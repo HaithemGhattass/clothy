@@ -11,8 +11,8 @@ import RiveRuntime
 
 struct OnBoardingView: View {
     
-    let shapes = RiveViewModel(fileName: "RiveAssets/shapes")
-    let button = RiveViewModel(fileName: "RiveAssets/button")
+    let shapes = RiveViewModel(fileName: "shapes")
+    let button = RiveViewModel(fileName: "button")
     @State var showModal = false
     
     

@@ -13,8 +13,8 @@ struct SignInView: View {
     @State var password = ""
     @State var isLoading = false
     @Binding var showModal: Bool
-    let check = RiveViewModel(fileName: "RiveAssets/check", stateMachineName: "State Machine 1")
-    let confetti = RiveViewModel(fileName: "RiveAssets/confetti", stateMachineName: "State Machine 1")
+    let check = RiveViewModel(fileName: "check", stateMachineName: "State Machine 1")
+    let confetti = RiveViewModel(fileName: "confetti", stateMachineName: "State Machine 1")
     
     func logIn() {
         isLoading = true
