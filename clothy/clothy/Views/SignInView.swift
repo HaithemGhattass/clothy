@@ -9,18 +9,21 @@ import SwiftUI
 import RiveRuntime
 
 struct SignInView: View {
+    @State var navigated = false
     @State var email = ""
     @State var password = ""
+
     @State var isLoading = false
     @Binding var showModal: Bool
+    @Binding var show: Bool
+  
     let check = RiveViewModel(fileName: "check", stateMachineName: "State Machine 1")
     let confetti = RiveViewModel(fileName: "confetti", stateMachineName: "State Machine 1")
     
     func logIn() {
         isLoading = true
-
-        if email == "Haithem" {
-            
+        
+        if email != "" {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                  check.triggerInput("Check")
             }
@@ -31,18 +34,25 @@ struct SignInView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                 withAnimation {
                     showModal = false
+                    show = false
+                   
+                    ContentView(selectedTab: .chat, isOpen: false, show: false)
+                    
+                  
+                    
                 }
+               
+            
+    
             }
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-               check.triggerInput("Error")
-                
-           }
+                 check.triggerInput("Error")
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 isLoading = false
                 
             }
-            
         }
     }
     
@@ -71,6 +81,9 @@ struct SignInView: View {
             
             Button {
                 logIn()
+              //  ContentView()
+                
+                
             } label: {
                 Label("Sign In", systemImage: "arrow.right")
                     .customFont(.headline)
@@ -128,6 +141,5 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(showModal: .constant(true))
-    }
+        SignInView(showModal: .constant(true),show: .constant(true))    }
 }

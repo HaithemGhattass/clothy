@@ -4,9 +4,11 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Fonts/Inter-Regular.ttf</string>
-		<string>Fonts/Inter-SemiBold.ttf</string>
-		<string>Fonts/Poppins-Bold.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-SemiBold.ttf</string>
+		<string>Poppins-Bold.ttf</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
