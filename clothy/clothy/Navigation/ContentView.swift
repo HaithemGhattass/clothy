@@ -9,9 +9,11 @@ import SwiftUI
 import RiveRuntime
 
 struct ContentView: View {
-    @AppStorage("selectedTab") var selectedTab: Tab = .chat
+    @AppStorage("selectedTab") var selectedTab: Tab = .user
     @State var isOpen = false
     @State var show = false
+    @StateObject private var loginVM = LoginViewModel()
+
     let button = RiveViewModel(fileName: "menu_button", stateMachineName: "State Machine", autoPlay: false)
     var body: some View {
         ZStack {
@@ -35,6 +37,7 @@ struct ContentView: View {
                     Text("Bell")
                 case .user:
                     Text("User")
+                
                 }
             }
             .safeAreaInset(edge: .bottom) {
@@ -50,20 +53,25 @@ struct ContentView: View {
             .scaleEffect(show ? 0.92 : 1)
             .ignoresSafeArea()
             
-            Image(systemName: "person")
-                .frame(width: 36, height: 36)
-                .background(.white)
-                .mask(Circle())
-                .shadow(color: Color("Shadow").opacity(0.2), radius: 5, x: 0, y: 5)
-                .onTapGesture {
-                    withAnimation(.spring()) {
-                        show = true
+          
+                Image(systemName: "person")
+                    .frame(width: 36, height: 36)
+                    .background(.white)
+                    .mask(Circle())
+                    .shadow(color: Color("Shadow").opacity(0.2), radius: 5, x: 0, y: 5)
+                    .onTapGesture {
+                        print(loginVM.isAuthenticated)
+                        withAnimation(.spring()) {
+                            
+                            show = true
+                            
+                        }
                     }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                .padding()
-                .offset(y: 4)
-                .offset(x: isOpen ? 100 : 0)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                    .padding()
+                    .offset(y: 4)
+                    .offset(x: isOpen ? 100 : 0)
+                
             
             button.view()
                 .frame(width: 44, height: 44)
@@ -73,6 +81,7 @@ struct ContentView: View {
                 .padding()
                 .offset(x: isOpen ? 216 : 0)
                 .onTapGesture {
+                   
                   button.setInput("isOpen", value: isOpen)
                     withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                         isOpen.toggle()
