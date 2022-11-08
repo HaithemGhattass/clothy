@@ -1,20 +1,20 @@
 //
-//  TestV.swift
+//  PrefrencesView.swift
 //  clothy
 //
-//  Created by haithem ghattas on 6/11/2022.
+//  Created by haithem ghattas on 7/11/2022.
 //
 
 import SwiftUI
 
-struct TestV: View {
+struct PrefrencesView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct TestV_Previews: PreviewProvider {
+struct PrefrencesView_Previews: PreviewProvider {
     static var previews: some View {
-        TestV()
+        PrefrencesView()
     }
 }
