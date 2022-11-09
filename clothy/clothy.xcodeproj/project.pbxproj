@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,10 +18,13 @@
 		D58A5B34291743E10067A00C /* clothyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58A5B33291743E10067A00C /* clothyTests.swift */; };
 		D58A5B3E291743E10067A00C /* clothyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58A5B3D291743E10067A00C /* clothyUITests.swift */; };
 		D58A5B40291743E10067A00C /* clothyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58A5B3F291743E10067A00C /* clothyUITestsLaunchTests.swift */; };
+		D5ABCBBC291A05C000D0E5EF /* ForgotPWView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ABCBBB291A05C000D0E5EF /* ForgotPWView.swift */; };
+		D5ABCBBE291A095C00D0E5EF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ABCBBD291A095C00D0E5EF /* ProfileView.swift */; };
 		D5AF936B29198026002DA67F /* PrefrencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF936A29198026002DA67F /* PrefrencesView.swift */; };
 		D5AF936D291986ED002DA67F /* PrefButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF936C291986ED002DA67F /* PrefButton.swift */; };
 		D5AF93702919A53D002DA67F /* Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF936F2919A53D002DA67F /* Webservices.swift */; };
 		D5AF93732919A64D002DA67F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF93722919A64D002DA67F /* LoginViewModel.swift */; };
+		D5C73913291BC55600DDBE1A /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C73912291BC55600DDBE1A /* DateUtils.swift */; };
 		D5E7B94E2919E4D20087AF12 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7B94D2919E4D20087AF12 /* User.swift */; };
 		D5EF61202917CB7E00B8DF43 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF611F2917CB7E00B8DF43 /* OnBoardingView.swift */; };
 		D5EF61222917CB9400B8DF43 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF61212917CB9400B8DF43 /* SignInView.swift */; };
@@ -38,6 +41,8 @@
 		D5EF61412917CD0700B8DF43 /* button.riv in Resources */ = {isa = PBXBuildFile; fileRef = D5EF613A2917CD0700B8DF43 /* button.riv */; };
 		D5EF61422917CD0700B8DF43 /* check.riv in Resources */ = {isa = PBXBuildFile; fileRef = D5EF613B2917CD0700B8DF43 /* check.riv */; };
 		D5EF61432917CD0700B8DF43 /* icons.riv in Resources */ = {isa = PBXBuildFile; fileRef = D5EF613C2917CD0700B8DF43 /* icons.riv */; };
+		D5F05652291BE4C0000377D4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D5F05651291BE4C0000377D4 /* Alamofire */; };
+		D5F05655291BE8DE000377D4 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D5F05654291BE8DE000377D4 /* SwiftyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,10 +77,13 @@
 		D58A5B39291743E10067A00C /* clothyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clothyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D58A5B3D291743E10067A00C /* clothyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clothyUITests.swift; sourceTree = "<group>"; };
 		D58A5B3F291743E10067A00C /* clothyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clothyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D5ABCBBB291A05C000D0E5EF /* ForgotPWView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPWView.swift; sourceTree = "<group>"; };
+		D5ABCBBD291A095C00D0E5EF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D5AF936A29198026002DA67F /* PrefrencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefrencesView.swift; sourceTree = "<group>"; };
 		D5AF936C291986ED002DA67F /* PrefButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefButton.swift; sourceTree = "<group>"; };
 		D5AF936F2919A53D002DA67F /* Webservices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservices.swift; sourceTree = "<group>"; };
 		D5AF93722919A64D002DA67F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D5C73912291BC55600DDBE1A /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		D5E7B94D2919E4D20087AF12 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5EF611F2917CB7E00B8DF43 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		D5EF61212917CB9400B8DF43 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -99,6 +107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F05655291BE8DE000377D4 /* SwiftyJSON in Frameworks */,
+				D5F05652291BE4C0000377D4 /* Alamofire in Frameworks */,
 				D51883DD2917EE25008799CA /* RiveRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,9 +164,10 @@
 			isa = PBXGroup;
 			children = (
 				D51883DA2917E7F3008799CA /* Info.plist */,
+				D58A5B22291743E00067A00C /* clothyApp.swift */,
+				D5C73911291BC54000DDBE1A /* Utils */,
 				D5EF61352917CCDF00B8DF43 /* RiveAssets */,
 				D5EF612E2917CC5500B8DF43 /* Fonts */,
-				D58A5B22291743E00067A00C /* clothyApp.swift */,
 				D5E7B94C2919E4C60087AF12 /* Model */,
 				D5AF93712919A62F002DA67F /* View Model */,
 				D5AF936E2919A51E002DA67F /* Services */,
@@ -210,6 +221,14 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
+		D5C73911291BC54000DDBE1A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D5C73912291BC55600DDBE1A /* DateUtils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		D5E7B94C2919E4C60087AF12 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +244,8 @@
 				D5EF611F2917CB7E00B8DF43 /* OnBoardingView.swift */,
 				D51CDED92918869A00A93D55 /* SignUpView.swift */,
 				D5AF936A29198026002DA67F /* PrefrencesView.swift */,
+				D5ABCBBB291A05C000D0E5EF /* ForgotPWView.swift */,
+				D5ABCBBD291A095C00D0E5EF /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +303,8 @@
 			name = clothy;
 			packageProductDependencies = (
 				D51883DC2917EE25008799CA /* RiveRuntime */,
+				D5F05651291BE4C0000377D4 /* Alamofire */,
+				D5F05654291BE8DE000377D4 /* SwiftyJSON */,
 			);
 			productName = clothy;
 			productReference = D58A5B1F291743E00067A00C /* clothy.app */;
@@ -347,7 +370,7 @@
 				};
 			};
 			buildConfigurationList = D58A5B1A291743E00067A00C /* Build configuration list for PBXProject "clothy" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -357,6 +380,8 @@
 			mainGroup = D58A5B16291743E00067A00C;
 			packageReferences = (
 				D51883DB2917EE25008799CA /* XCRemoteSwiftPackageReference "rive-ios" */,
+				D5F05650291BE4C0000377D4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D5F05653291BE8DE000377D4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = D58A5B20291743E00067A00C /* Products */;
 			projectDirPath = "";
@@ -410,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5ABCBBC291A05C000D0E5EF /* ForgotPWView.swift in Sources */,
 				D5EF612A2917CC0D00B8DF43 /* CustomFont.swift in Sources */,
 				D5EF61202917CB7E00B8DF43 /* OnBoardingView.swift in Sources */,
 				D5AF936B29198026002DA67F /* PrefrencesView.swift in Sources */,
@@ -418,9 +444,11 @@
 				D5E7B94E2919E4D20087AF12 /* User.swift in Sources */,
 				D51CDECB29182A4900A93D55 /* TabBar.swift in Sources */,
 				D5EF61282917CBFA00B8DF43 /* Extentions.swift in Sources */,
+				D5ABCBBE291A095C00D0E5EF /* ProfileView.swift in Sources */,
 				D51CDEDA2918869A00A93D55 /* SignUpView.swift in Sources */,
 				D5AF936D291986ED002DA67F /* PrefButton.swift in Sources */,
 				D5AF93702919A53D002DA67F /* Webservices.swift in Sources */,
+				D5C73913291BC55600DDBE1A /* DateUtils.swift in Sources */,
 				D5AF93732919A64D002DA67F /* LoginViewModel.swift in Sources */,
 				D5EF61222917CB9400B8DF43 /* SignInView.swift in Sources */,
 				D58A5B23291743E00067A00C /* clothyApp.swift in Sources */,
@@ -761,6 +789,22 @@
 				kind = branch;
 			};
 		};
+		D5F05650291BE4C0000377D4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		D5F05653291BE8DE000377D4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -768,6 +812,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D51883DB2917EE25008799CA /* XCRemoteSwiftPackageReference "rive-ios" */;
 			productName = RiveRuntime;
+		};
+		D5F05651291BE4C0000377D4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5F05650291BE4C0000377D4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		D5F05654291BE8DE000377D4 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5F05653291BE8DE000377D4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

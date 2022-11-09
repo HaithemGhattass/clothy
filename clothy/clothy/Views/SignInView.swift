@@ -14,6 +14,7 @@ struct SignInView: View {
     @State var navigated = false
     @State var email = ""
     @State var password = ""
+    @State var forgetpw = false
 
     @State var isLoading = false
     @Binding var showModal: Bool
@@ -79,16 +80,29 @@ struct SignInView: View {
             }
             
             Button {
-               
-                loginVM.login()
+                loginVM.connexion(completed: { (success, reponse) in
+                    
+                    if success {
+                      //  let utilisateur = reponse as! User
+                        
+                        
+                        logIn()
+                    } else {
+                        print("ERROR CANT CONNECT")
+                    }
+                    
+                })
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    loginVM.isAuthenticated ?
-                    
-                    
-                    logIn() : print("ERROR CANT CONNECT")
 
-                }
+              // loginVM.login()
+                
+         //      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+           //       loginVM.isAuthenticated ?
+                    
+                    
+             //      logIn() : print("ERROR CANT CONNECT")
+
+            //    }
               
             
                 
@@ -104,6 +118,18 @@ struct SignInView: View {
                     .cornerRadius(8, corners: [.topLeft])
                 .shadow(color: Color(hex: "F77D8E").opacity(0.5), radius: 20, x: 0, y: 10)
             }
+            HStack{
+                Text("Forgot password?  Reset")
+                    .customFont(.subheadline)
+                    .foregroundColor(.secondary)
+                    .onTapGesture {
+                        forgetpw = true ;
+                }
+                
+                
+            }
+         
+            
          
             
             HStack {
@@ -161,6 +187,15 @@ struct SignInView: View {
         .padding()
         .overlay(
             ZStack {
+         
+                
+                        if forgetpw {
+                            withAnimation {
+                                ForgotPWView()
+
+                            }
+                        }
+                 
                 if isLoading {
                     
                     check.view()

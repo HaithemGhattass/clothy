@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct User {
+struct User:  Decodable {
     
-    internal init(_id: String? = nil, pseudo: String? = nil, email: String? = nil, password: String? = nil, firstname: String? = nil, lastname: String? = nil, birthdate: Date? = nil, idpicture: String? = nil, sexe: Bool? = nil,isVerified: Bool? = nil) {
+    internal init(_id: String? = nil, pseudo: String? = nil, email: String? = nil, password: String? = nil, firstname: String? = nil, lastname: String? = nil, birthdate: Date? = nil, idpicture: String? = nil, sexe: Bool? = nil,isVerified: Bool? = nil, phone: String? = nil, prefrences: String? = nil) {
         self._id = _id
         self.pseudo = pseudo
         self.email = email
@@ -20,6 +20,10 @@ struct User {
         self.idpicture = idpicture
         self.sexe = sexe
         self.isVerified = isVerified
+        self.phone = phone
+        self.prefrences = prefrences
+
+
       
     }
     
@@ -28,6 +32,8 @@ struct User {
     var email : String?
     var password  : String?
     var firstname : String?
+    var phone : String?
+    var prefrences : String?
     var lastname : String?
     var birthdate : Date?
     var idpicture : String?

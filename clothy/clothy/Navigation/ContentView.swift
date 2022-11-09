@@ -18,7 +18,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Color("Background 2").ignoresSafeArea()
-            //Color.white.ignoresSafeArea()
+         //   Color.white.ignoresSafeArea()
             
             SideMenu()
                 .opacity(isOpen ? 1 : 0)
@@ -36,7 +36,7 @@ struct ContentView: View {
                 case .bell:
                     Text("Bell")
                 case .user:
-                    Text("User")
+                   ProfileView()
                 
                 }
             }

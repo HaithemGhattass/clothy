@@ -36,6 +36,7 @@ struct RegisterResquestBody: Codable {
 struct LoginResponse: Codable {
     let token: String?
     let message: String?
+    let firstname: String?
     let success: Bool?
 }
 
@@ -101,7 +102,8 @@ class Webservice {
                 return
             }
             
-            guard let token = loginResponse.token else {
+            guard let token = loginResponse.token
+            else {
                 completion(.failure(.invalidCredentials))
                 return
             }
@@ -111,7 +113,7 @@ class Webservice {
         }.resume()
         
     }
-    
+    /*
     func register(email: String, password: String,firstname: String,lastname: String ,phone: String,pseudo: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         
         guard let url = URL(string: "http://localhost:9090/api/register") else {
@@ -141,5 +143,6 @@ class Webservice {
             
         }.resume()
     }
+     */
     
 }

@@ -19,6 +19,7 @@ struct SignUpView: View {
     @State var firstname = ""
     @State var lastname = ""
     @StateObject private var loginVM = LoginViewModel()
+    var user = User()
 
 
 
@@ -26,7 +27,7 @@ struct SignUpView: View {
     @State var isLoading = false
     @Binding var showSignUp: Bool
   
-
+   
     
     var body: some View {
         
@@ -90,12 +91,26 @@ struct SignUpView: View {
                 
                 
                 Button {
-                    loginVM.register()
+                    loginVM.inscription(completed: { (success) in
+                        
+                        if success {
+                            
+                           withAnimation{
+                         
+                                showSignUp = false
+                            }
 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                 
-                        showSignUp = false 
-                    }
+                           
+                        } else {
+                           print("fama mochkla ")
+                            
+
+                        }
+
+                    })
+
+
+                    
                     
                 } label: {
                     Label("Sign Up", systemImage: "arrow.right")
