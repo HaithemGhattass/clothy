@@ -7,7 +7,7 @@
 
 import SwiftUI
 import RiveRuntime
-
+var user: User?
 struct SideMenu: View {
     @State var isDarkMode = false
     @AppStorage("selectedMenu") var selectedMenu: SelectedMenu = .home
@@ -19,8 +19,13 @@ struct SideMenu: View {
                     .padding(12)
                     .background(.white.opacity(0.2))
                     .mask(Circle())
+                    .onTapGesture {
+                        print( user?.firstname ?? "nope"
+)
+
+                    }
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("UserName")
+                    Text(User().firstname ?? "Username")
                     Text("welcome back")
                         .font(.subheadline)
                         .opacity(0.7)
@@ -195,3 +200,5 @@ enum SelectedMenu: String {
     case notifications
     case darkmode
 }
+
+

@@ -12,6 +12,9 @@ struct OnboardingView: View {
     let button = RiveViewModel(fileName: "button")
     @State var showModal = false
     @State var showSignUp = false
+    @State var forgetpw = false
+    @State var title = "Choose Your Outfit Wisely"
+    
 
     @Binding var show: Bool
 
@@ -30,13 +33,14 @@ struct OnboardingView: View {
             
             if showModal {
                 
-                SignInView(showModal: $showModal, showSignUp: $showSignUp, show: $show)
+                SignInView(forgetpw: $forgetpw, showModal: $showModal, showSignUp: $showSignUp, show: $show)
                     .transition(.move(edge: .top).combined(with: .opacity))
                     .overlay(
                         Button {
                             withAnimation(.spring()) {
                                 showModal = false
                                 show = false
+                                showSignUp = false
                             }
                         } label: {
                             Image(systemName: "xmark")
@@ -60,8 +64,9 @@ struct OnboardingView: View {
                     .overlay(
                         Button {
                             withAnimation(.spring()) {
-                                showModal = false
-                                show = false
+                                showSignUp = false
+                                showModal = true 
+
                             }
                         } label: {
                             Image(systemName: "xmark")
@@ -75,6 +80,30 @@ struct OnboardingView: View {
                     )
                     .zIndex(1)
             }
+            if forgetpw {
+                ForgotPWView( forgetpw: $forgetpw)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .overlay(
+                        Button {
+                            withAnimation(.spring()) {
+                              
+                            
+                                forgetpw = false
+                            }
+                        } label: {
+                            Image(systemName: "xmark")
+                                .frame(width: 36, height: 36)
+                                .foregroundColor(.black)
+                                .background(.white)
+                                .mask(Circle())
+                            .shadow(color: Color("Shadow").opacity(0.3), radius: 5, x: 0, y: 3)
+                        }
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                    )
+                    .zIndex(1)
+            }
+            
+            
             Button {
                 withAnimation {
                     show = false
@@ -95,7 +124,7 @@ struct OnboardingView: View {
     
     var content: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Choose Your Outfit Wisely")
+            Text(title)
                 .font(.custom("Poppins Bold", size: 60, relativeTo: .largeTitle))
                 .frame(width: 260, alignment: .leading)
             

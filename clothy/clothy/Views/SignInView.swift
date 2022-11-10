@@ -14,7 +14,7 @@ struct SignInView: View {
     @State var navigated = false
     @State var email = ""
     @State var password = ""
-    @State var forgetpw = false
+    @Binding var forgetpw : Bool
 
     @State var isLoading = false
     @Binding var showModal: Bool
@@ -124,6 +124,9 @@ struct SignInView: View {
                     .foregroundColor(.secondary)
                     .onTapGesture {
                         forgetpw = true ;
+                      //  showModal = false
+                        
+
                 }
                 
                 
@@ -191,7 +194,8 @@ struct SignInView: View {
                 
                         if forgetpw {
                             withAnimation {
-                                ForgotPWView()
+                                ForgotPWView( forgetpw: $forgetpw)
+                               
 
                             }
                         }
@@ -213,5 +217,5 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(showModal: .constant(true), showSignUp: .constant(true),  show: .constant(true))    }
+        SignInView(forgetpw: .constant(true), showModal: .constant(true), showSignUp: .constant(true),  show: .constant(true))    }
 }

@@ -19,6 +19,8 @@ class LoginViewModel: ObservableObject {
     var phone: String = ""
     var pseudo: String = ""
     var prefrences: String = "hiphop"
+   // var  utilisateur = User()
+    
 
 
 
@@ -65,16 +67,23 @@ class LoginViewModel: ObservableObject {
                    parameters: ["email": email, "password": password], encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
-            .responseData { response in
+            .responseData { [self] response in
                 switch response.result {
                    
                 case .success:
                     let jsonData = JSON(response.data!)
                     print(jsonData)
+                    //User().pseudo = jsonData["pseudo"].stringValue
                     let utilisateur = self.makeItem(jsonItem: jsonData["userr"])
                     UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "tokenConnexion")
                     UserDefaults.standard.setValue(utilisateur._id, forKey: "id")
-                    print(utilisateur)
+             //       UserDefaults.standard.setValue(self.utilisateur.firstname, forKey: "firstname")
+
+                    
+                    
+                  //  print(utilisateur.firstname ?? "aaz")
+                    
+
                     
                    completed(true, utilisateur)
                 case let .failure(error):
@@ -137,6 +146,43 @@ class LoginViewModel: ObservableObject {
     }
      */
     
+    func forgorPW(email: String, completed: @escaping (Bool) -> Void) {
+        AF.request("http://localhost:9090/api/forgetpwd",
+                   method: .post,
+                   parameters: ["email": email], encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("mail is sent")
+                    completed(true)
+                case let .failure(error):
+                    print(error)
+                    completed(false)
+                }
+            }
+    }
+    func EnterfpwCode(email: String,code: Int , completed: @escaping (Bool) -> Void) {
+        AF.request("http://localhost:9090/api/changepwcode",
+                   method: .post,
+                   parameters: ["email": email , "code": code], encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("code is true")
+                    completed(true)
+                case let .failure(error):
+                    print(error)
+                    completed(false)
+                }
+            }
+    }
+
+    
+    
     
     
     func makeItem(jsonItem: JSON) -> User {
@@ -160,7 +206,15 @@ class LoginViewModel: ObservableObject {
           
         )
     }
-  
+ 
+    struct LoginViewModel {
+        let user : User
+        var fnmae: String {
+            return self.user.firstname ?? "oppa ala ouropa"
+        }
+    }
     
 }
+
+
 

@@ -9,26 +9,115 @@ import SwiftUI
 
 struct ForgotPWView: View {
     @State var email = ""
+    @State var textbutton = "Reset pasword"
+    @State var emaillabel = "email"
+    @State var confirmpw = ""
+    @State var newpwd = ""
+    @State var saveMail = ""
 
+
+    @State private var pressed = false
+    @State private var trueCode = false
+    @State private var confirmpwtf = false
+    @State private var validatepw = false
+    @State private var back = true
+    @State private var fals = false
+    @Binding var forgetpw: Bool
+
+
+    @StateObject private var loginVM = LoginViewModel()
+
+
+
+
+    
     var body: some View {
         VStack(spacing: 24) {
             
             Text("Forgot password")
                 .customFont(.title2)
             VStack(alignment: .leading) {
-                Text("Email")
+              
+               
+                if(confirmpwtf){
+                    Text(" passwod")
                     .customFont(.subheadline)
                     .foregroundColor(.secondary)
-                TextField("", text: $email)
+                    TextField("", text: $confirmpw)
                     .customTextField()
+                    
+                    Text("comfirm passwod")
+                    .customFont(.subheadline)
+                    .foregroundColor(.secondary)
+                    TextField("", text: $newpwd)
+                    .customTextField()
+                } else {
+                    Text(emaillabel)
+                        .customFont(.subheadline)
+                        .foregroundColor(.secondary)
+                    TextField("", text: $email)
+                        .customTextField()
+                }
                 
                 Button {
+                    if(pressed){
+                        print(saveMail)
+                        // self.emaillabel="code true"
+                        loginVM.EnterfpwCode(email: saveMail, code: Int(self.email) ?? 0000, completed: { (success) in
+                            if(success){
+                            //    trueCode = true
+                                confirmpwtf = true
+                                email = ""
+                                emaillabel = "enter password"
+                                self.textbutton = "enter passwod"
+                                
+                                
+                            }else{
+                                print("error code errer")
+                            }
+                            //    if(self.email == "aa"){
+                            //       trueCode = true
+                            
+                        })
+                   
+                            if( confirmpwtf){
+                                if((confirmpw == newpwd)&&(newpwd != "")){
+                                    forgetpw = false
+
+                                }
+                             //   SignInView().showSignUp = false
+
+                        }
                     
-                    
-                    
+                        
+                        
+                        
+                    }else {
+                       
+                        if(self.email != ""){
+                            print(self.email)
+                            loginVM.forgorPW(email: self.email, completed: { (success) in
+                                if(success){
+                                    saveMail = self.email
+                                    pressed = true
+                                    self.email = ""
+                                    print(saveMail)
+                                    self.textbutton = "Enter Code"
+                                    self.emaillabel = "code"
+                                    //pressed = true
+                                    self.textbutton = "Enter Code"
+                                    self.emaillabel = "code"
+                                print("success")
+                                }else{
+                                    print("erre no maail")
+                                }
+                            }
+)
+                        }
+                    }
                     
                 } label: {
-                    Label("Reset password", systemImage: "arrow.right")
+                    Label(textbutton, systemImage: "arrow.right")
                         .customFont(.headline)
                         .padding(20)
                         .frame(maxWidth: .infinity)
@@ -55,6 +144,6 @@ struct ForgotPWView: View {
 
 struct ForgotPWView_Previews: PreviewProvider {
     static var previews: some View {
-        ForgotPWView()
+        ForgotPWView( forgetpw: .constant(true))
     }
 }

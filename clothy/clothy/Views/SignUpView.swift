@@ -9,6 +9,7 @@ import SwiftUI
 import RiveRuntime
 
 struct SignUpView: View {
+
     @State var navigated = false
     @State var email = ""
     @State var password = ""
