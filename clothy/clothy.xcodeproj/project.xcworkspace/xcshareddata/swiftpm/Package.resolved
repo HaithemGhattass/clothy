@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "swiftuiformvalidator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ShabanKamell/SwiftUIFormValidator.git",
+      "state" : {
+        "revision" : "187876a1fc41766c4d166ddcd5c5a08212ca3549",
+        "version" : "0.19.2"
+      }
+    },
+    {
       "identity" : "swiftyjson",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftyJSON/SwiftyJSON",

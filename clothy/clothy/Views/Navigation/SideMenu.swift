@@ -2,37 +2,28 @@
 //  SideMenu.swift
 //  AnimatedApp
 //
-//  Created by Meng To on 2022-04-20.
+//  Created by Haithem To on 2022-04-20.
 //
 
 import SwiftUI
 import RiveRuntime
-var user: User?
 struct SideMenu: View {
+    @State var show = false
+    @State var username = ""
+    
+    
     @State var isDarkMode = false
     @AppStorage("selectedMenu") var selectedMenu: SelectedMenu = .home
+    @StateObject private var loginVM = LoginViewModel()
+    @StateObject private var vm = UsersViewModel()
+
+    
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Image(systemName: "person")
-                    .padding(12)
-                    .background(.white.opacity(0.2))
-                    .mask(Circle())
-                    .onTapGesture {
-                        print( user?.firstname ?? "nope"
-)
-
-                    }
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(User().firstname ?? "Username")
-                    Text("welcome back")
-                        .font(.subheadline)
-                        .opacity(0.7)
-                }
-                Spacer()
-            }
-            .padding()
+        
+         
+           
             
             Text("BROWSE")
                 .font(.subheadline).bold()
@@ -51,8 +42,10 @@ struct SideMenu: View {
                 .opacity(0.7)
             
             trade
-            
             Spacer()
+            
+            
+           // Spacer()
             
             HStack(spacing: 14) {
                 menuItems3[0].icon.view()
@@ -60,9 +53,9 @@ struct SideMenu: View {
                     .opacity(0.6)
                     .onChange(of: isDarkMode) { newValue in
                         if newValue {
-                        menuItems3[0].icon.setInput("active", value: true)
+                            menuItems3[0].icon.setInput("active", value: true)
                         } else {
-                           menuItems3[0].icon.setInput("active", value: false)
+                            menuItems3[0].icon.setInput("active", value: false)
                         }
                     }
                 Text(menuItems3[0].text)
@@ -81,7 +74,9 @@ struct SideMenu: View {
         .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
         .shadow(color: Color(hex: "17203A").opacity(0.3), radius: 40, x: 0, y: 20)
         .frame(maxWidth: .infinity, alignment: .leading)
+      
     }
+    
     
     var browse: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -110,7 +105,7 @@ struct SideMenu: View {
                     withAnimation(.timingCurve(0.2, 0.8, 0.2, 1)) {
                         selectedMenu = item.menu
                     }
-                     item.icon.setInput("active", value: true)
+                    item.icon.setInput("active", value: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         item.icon.setInput("active", value: false)
                     }
@@ -149,9 +144,9 @@ struct SideMenu: View {
                     withAnimation(.timingCurve(0.2, 0.8, 0.2, 1)) {
                         selectedMenu = item.menu
                     }
-                     item.icon.setInput("active", value: true)
+                    item.icon.setInput("active", value: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    item.icon.setInput("active", value: false)
+                        item.icon.setInput("active", value: false)
                     }
                 }
             }
@@ -160,7 +155,13 @@ struct SideMenu: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(8)
     }
+    
+    
+  
 }
+    
+
+              
 
 struct SideMenu_Previews: PreviewProvider {
     static var previews: some View {
@@ -174,6 +175,12 @@ struct MenuItem: Identifiable {
     var icon: RiveViewModel
     var menu: SelectedMenu
 }
+struct MenuItem2: Identifiable {
+    var id = UUID()
+    var text: String
+    var icon: Image
+    var menu: SelectedMenu
+}
 
 var menuItems = [
     MenuItem(text: "Home", icon: RiveViewModel(fileName: "icons", stateMachineName: "HOME_interactivity", artboardName: "HOME"), menu: .home),
@@ -183,13 +190,15 @@ var menuItems = [
 ]
 
 var menuItems2 = [
-    MenuItem(text: "Trade", icon: RiveViewModel(fileName: "icons", stateMachineName: "TIMER_Interactivity", artboardName: "TIMER"), menu: .trade),
+    MenuItem(text: "Trade", icon: RiveViewModel(fileName: "icons", stateMachineName: "RELOAD_Interactivity", artboardName: "REFRESH/RELOAD"), menu: .trade),
     MenuItem(text: "Notifications", icon: RiveViewModel(fileName: "icons", stateMachineName: "BELL_Interactivity", artboardName: "BELL"), menu: .notifications)
 ]
 
 var menuItems3 = [
     MenuItem(text: "Dark Mode", icon: RiveViewModel(fileName: "icons", stateMachineName: "SETTINGS_Interactivity", artboardName: "SETTINGS"), menu: .darkmode)
 ]
+
+
 
 enum SelectedMenu: String {
     case home

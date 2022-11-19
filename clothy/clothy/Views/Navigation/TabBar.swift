@@ -30,13 +30,15 @@ struct TabBar: View {
             )
             .padding(.horizontal, 24)
         }
+      
     }
+    
     
     var content: some View {
         ForEach(tabItems) { item in
             Button {
-               item.icon.setInput("active", value: true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            item.icon.setInput("active", value: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             item.icon.setInput("active", value: false)
                 }
                 withAnimation {

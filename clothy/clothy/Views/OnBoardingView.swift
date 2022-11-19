@@ -39,8 +39,8 @@ struct OnboardingView: View {
                         Button {
                             withAnimation(.spring()) {
                                 showModal = false
-                                show = false
-                                showSignUp = false
+                              
+                                
                             }
                         } label: {
                             Image(systemName: "xmark")
@@ -65,7 +65,7 @@ struct OnboardingView: View {
                         Button {
                             withAnimation(.spring()) {
                                 showSignUp = false
-                                showModal = true 
+                              //  showModal = true
 
                             }
                         } label: {
@@ -102,8 +102,9 @@ struct OnboardingView: View {
                     )
                     .zIndex(1)
             }
+            // CLOSE BUTTON ( NO NEEDED)
             
-            
+         /*
             Button {
                 withAnimation {
                     show = false
@@ -119,6 +120,7 @@ struct OnboardingView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             .padding(20)
             .offset(y: showModal ? -200 : 80)
+          */
         }
     }
     

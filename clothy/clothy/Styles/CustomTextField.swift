@@ -25,12 +25,13 @@ struct CustomTextField: ViewModifier {
                 image
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 8)
+                    .foregroundColor(Color(hex: "5f9fff"))
             )
     }
 }
 
 extension View {
-    func customTextField(image: Image = Image("Icon Email")) -> some View {
+    func customTextField(image: Image =  Image(systemName: "mail")) -> some View {
         modifier(CustomTextField(image: image))
     }
 }

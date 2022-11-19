@@ -10,12 +10,13 @@ import RiveRuntime
 
 struct SignInView: View {
     @StateObject private var loginVM = LoginViewModel()
+    @StateObject private var vm = UsersViewModel()
+
 
     @State var navigated = false
     @State var email = ""
     @State var password = ""
     @Binding var forgetpw : Bool
-
     @State var isLoading = false
     @Binding var showModal: Bool
     @Binding var showSignUp: Bool
@@ -23,19 +24,21 @@ struct SignInView: View {
     
 
     @Binding var show: Bool
-  
+    let userDefaults = UserDefaults.standard
+
     let check = RiveViewModel(fileName: "check", stateMachineName: "State Machine 1")
     let confetti = RiveViewModel(fileName: "confetti", stateMachineName: "State Machine 1")
     
     func logIn() {
         
         
-        
-        
+       // ContentView().fetch = true
         isLoading = true
-        
+       
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             check.triggerInput("Check")
+            
+          
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             isLoading = false
@@ -50,6 +53,8 @@ struct SignInView: View {
             
             
         }
+        userDefaults.set(loginVM.email, forKey: "email")
+        print(loginVM.email)
     }
   
 
@@ -76,17 +81,22 @@ struct SignInView: View {
                     .customFont(.subheadline)
                     .foregroundColor(.secondary)
                 SecureField("", text: $loginVM.password)
-                    .customTextField(image: Image("Icon Lock"))
+                    .customTextField(image: Image(systemName: "lock"))
             }
             
             Button {
-                loginVM.connexion(completed: { (success, reponse) in
+                
+                loginVM.connexion(completed: { (reponse,user)  in
                     
-                    if success {
+                    if (reponse) {
+                        
+                        //User() = reponse
                       //  let utilisateur = reponse as! User
                         
                         
                         logIn()
+                        
+                        
                     } else {
                         print("ERROR CANT CONNECT")
                     }
@@ -107,16 +117,18 @@ struct SignInView: View {
             
                 
                 
-            } label: {
+            }
+            
+        label: {
                 Label("Sign In", systemImage: "arrow.right")
                     .customFont(.headline)
                     .padding(20)
                     .frame(maxWidth: .infinity)
-                    .background(Color(hex: "F77D8E"))
+                    .background(Color(hex: "5f9fff"))
                     .foregroundColor(.white)
                     .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
                     .cornerRadius(8, corners: [.topLeft])
-                .shadow(color: Color(hex: "F77D8E").opacity(0.5), radius: 20, x: 0, y: 10)
+                .shadow(color: Color(hex: "5f9fff").opacity(0.5), radius: 20, x: 0, y: 10)
             }
             HStack{
                 Text("Forgot password?  Reset")
@@ -144,7 +156,7 @@ struct SignInView: View {
                 withAnimation {
                     
                     showSignUp = true
-                    showModal = false
+                  //  showModal = false
                 }
            
                 
@@ -154,11 +166,11 @@ struct SignInView: View {
                     .customFont(.headline)
                     .padding(20)
                     .frame(maxWidth: .infinity)
-                    .background(Color(hex: "F77D8E"))
+                    .background(Color(hex: "5f9fff"))
                     .foregroundColor(.white)
                     .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
                     .cornerRadius(8, corners: [.topLeft])
-                .shadow(color: Color(hex: "F77D8E").opacity(0.5), radius: 20, x: 0, y: 10)
+                .shadow(color: Color(hex: "5f9fff").opacity(0.5), radius: 20, x: 0, y: 10)
             }
             HStack {
                 Rectangle().frame(height: 1).opacity(0.1)

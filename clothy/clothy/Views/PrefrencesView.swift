@@ -8,97 +8,137 @@
 import SwiftUI
 
 struct PrefrencesView: View {
-    @State var SelectedItem = false
-    @State var BindingSelection = false
-    private var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-    @State private var didTap:Bool = false
-    @State var yourCondition: Int = 1
-    var colorToShow: Color {
-            switch didTap {
-            case true:
-                    return Color(UIColor(red: 0.5, green: 0.2, blue: 0.8, alpha: 0.5))
-            
-              case false:
-                    return .red
-            }
-        }
     
-    var body: some View {
-        
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    private let columns: [GridItem] = [
+        GridItem(.fixed(120)),
+        GridItem(.fixed(120)),  GridItem(.fixed(120))]
 
+  
+   @State var selected = false
+    var PREFS = ["ROCK","POP","PUNK","IDK","yess","piww","paap","yeeaa","oyy"]
+    
+    func idk() {
         
-        
-        ScrollView {
-            VStack(spacing: 24) {
-                Text("Tell us about your prefrences")
-                    .customFont(.largeTitle)
-               
-                    .customFont(.headline)
-                
-                
-                LazyVGrid( columns: gridItemLayout, spacing: 20) {
-                   
-                    
-                   Button(action: {
-                           self.didTap = !didTap
-                       
-                   }, label: {
-                       PrefButton(buttonText: "test", buttonColor:Color(hex: "FFFFFF"))
-                           .shadow(color:colorToShow,radius: 20, x: 0, y: 10)
-                           
-                       
-                       
-                         
-                   }
-                   
-                   )
-                 
-                   
-                  
-                }
-                
-              
-               
-             
-                
-                
-                Button {
-                  
-                    
-                    
-                } label: {
-                    Label("Sign Up", systemImage: "arrow.right")
-                        .customFont(.headline)
-                        .padding(20)
-                        .frame(maxWidth: .infinity)
-                        .background(Color(hex: "F77D8E"))
-                        .foregroundColor(.white)
-                        .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
-                        .cornerRadius(8, corners: [.topLeft])
-                    .shadow(color: Color(hex: "F77D8E").opacity(0.5), radius: 20, x: 0, y: 10)
-                }
-                HStack {
-                    Rectangle().frame(height: 1).opacity(0.1)
-                    .customFont(.subheadline2).foregroundColor(.black.opacity(0.3))
-                    Rectangle().frame(height: 1).opacity(0.1)
-                }
-                
-              
-              
-            }
-            .padding(30)
-            .background(.regularMaterial)
-            .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
-            .shadow(color: Color("Shadow").opacity(0.3), radius: 5, x: 0, y: 3)
-            .shadow(color: Color("Shadow").opacity(0.3), radius: 30, x: 0, y: 30)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .stroke(.linearGradient(colors: [.white.opacity(0.8), .white.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing))
-            )
-        .padding()
-        }
+        self.updateSelectedButtons(value: PREFS.firstIndex(of: "ROCK")! + 1)
+           
         
     }
+    
+    func updateSelectedButtons(value: Int)
+       {
+         //  if self.buttonList.contains(where: {$0.self.})
+           if self.buttonList.contains(where: { $0.buttonIndex == value } )
+           {
+               self.buttonList.remove(at: self.buttonList.firstIndex(where: {$0.buttonIndex == value})!)
+               self.count -= 1
+           }
+           else
+           {
+               if(self.count != 3 ){
+                   print(self.colorIndex)
+                   self.buttonList.append(ColorButton(color: colors[self.colorIndex].value, buttonIndex: value))
+                   self.count += 1
+                   self.colorIndex += 1
+                   if self.colorIndex >= 1
+                   {
+                       self.colorIndex = 0
+                   }
+               }
+               
+           }
+       }
+
+
+       func getColor(_ value: Int) -> Color
+       {
+           return self.buttonList.first(where: { $0.buttonIndex == value })?.color ?? Color.white
+           
+       }
+    @State private var buttonList = [ColorButton]()
+
+       @State private var selectedButtons: [Int] = [Int]()
+       @State private var colorIndex: Int = 0
+       @State private var count: Int = 0
+    
+    init()
+       {
+
+       }
+    var body: some View {
+        
+        
+        VStack
+            {
+                
+                Text((self.count == 3 ) ? "you atteinted maximum items " : " You selected \(self.count) items")
+                    .foregroundColor((self.count == 3 ) ? Color.red : Color.black)
+             
+                LazyVGrid(columns: columns){
+                  
+
+                    ForEach((1..<PREFS.count+1), id: \.self)
+                    { index in
+                
+                       
+
+                            Button(action: {
+                                
+                                self.updateSelectedButtons(value: index)
+                            }) {
+                                Text("\(PREFS[index - 1])")
+                                    .foregroundColor(Color.black)
+                                    .padding()
+                            }
+                            .background(self.getColor(index))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color(hex: "5f9fff"), lineWidth: 1) )
+                            .padding()
+                        }
+                    
+
+                }
+                Spacer()
+            }.onAppear{idk()}
+     
+        
+        .navigationTitle("Prefrences")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+           
+            trailing:
+            Button(action : {self.presentationMode.wrappedValue.dismiss()
+ }){
+                Text("Save")
+        })
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    struct ColorModel: Identifiable {
+        let value: Color
+        let id = UUID()
+    }
+    
+    
+    let colors = [
+        ColorModel(value: Color(hex: "5f9fff"))
+        
+    ]
+
+    struct ColorButton
+    {
+        let color: Color
+        let buttonIndex: Int
+    }
+
+       
 }
 
 

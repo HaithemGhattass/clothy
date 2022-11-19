@@ -82,6 +82,23 @@ struct ForgotPWView: View {
                    
                             if( confirmpwtf){
                                 if((confirmpw == newpwd)&&(newpwd != "")){
+                                    
+                                    
+                                    loginVM.setnewpw(email: saveMail, newpw: self.newpwd, completed: { (success) in
+                                        if(success){
+                                        //    trueCode = true
+                                            forgetpw = false
+                                            
+                                          
+                                            
+                                            
+                                        }else{
+                                            print("error code errer")
+                                        }
+                                        //    if(self.email == "aa"){
+                                        //       trueCode = true
+                                        
+                                    })
                                     forgetpw = false
 
                                 }
@@ -121,11 +138,11 @@ struct ForgotPWView: View {
                         .customFont(.headline)
                         .padding(20)
                         .frame(maxWidth: .infinity)
-                        .background(Color(hex: "F77D8E"))
+                        .background(Color(hex: "5f9fff"))
                         .foregroundColor(.white)
                         .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
                         .cornerRadius(8, corners: [.topLeft])
-                        .shadow(color: Color(hex: "F77D8E").opacity(0.5), radius: 20, x: 0, y: 10)
+                        .shadow(color: Color(hex: "5f9fff").opacity(0.5), radius: 20, x: 0, y: 10)
                 }
             }
         }

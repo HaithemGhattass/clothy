@@ -16,7 +16,7 @@ struct clothyApp: App {
         WindowGroup {
             
         
-                ContentView()
+            ContentView()
             
         }
     }
