@@ -19,14 +19,26 @@ struct CategoriesView: View {
                     }
                   
                 }
+                NavigationLink{
+                        AddClothesCameraView(sourceType:.photoLibrary , classifier: ImageClassifier())
+                    
+                }label: {
+                    Text("add clothes")
+                    
+                }
+
             }
             .navigationBarTitle("Categories", displayMode: .inline)
             
+           
             
         }
         .navigationViewStyle(.stack)
+       
+        
     }
 }
+
 
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {

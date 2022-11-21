@@ -21,8 +21,8 @@ struct ProfileView: View {
     @State var text = UIColor.label
 
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-      @State private var selectedImage: UIImage?
-      @State private var isImagePickerDisplay = false
+    @State private var selectedImage: UIImage?
+    @State private var isImagePickerDisplay = false
     @State private var firstname = ""
     @State private var lastname = ""
     @State private var pseudo = ""
@@ -122,8 +122,8 @@ struct ProfileView: View {
             //MARK: ALERT!
             .alert(isPresented: $presentAlert) {
                 Alert(
-                    title: Text("Title"),
-                    message: Text("Message"),
+                    title: Text("Pick a source"),
+                  
                     primaryButton: .default(Text("Camera"), action: {
                         self.sourceType = .camera
                         self.isImagePickerDisplay.toggle()

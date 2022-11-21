@@ -60,6 +60,8 @@ struct OnboardingView: View {
             }
             if showSignUp {
                 SignUpView( showSignUp: $showSignUp)
+                   
+
                     .transition(.move(edge: .top).combined(with: .opacity))
                     .overlay(
                         Button {

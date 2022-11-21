@@ -18,11 +18,11 @@ class LoginViewModel: ObservableObject {
     @Published var lastname: String = ""
     @Published var phone: String = ""
     @Published var pseudo: String = ""
-    var birthdate :Date = Date()
+    @Published var birthdate :Date = Date()
 
 
     @Published var prefrences: String = "hiphop"
-    var HOST_URL = "http://192.168.1.12:3000"
+    var HOST_URL = "http://192.168.1.18:3000"
      var gender = "Other" 
     // var  utilisateur = User()
     

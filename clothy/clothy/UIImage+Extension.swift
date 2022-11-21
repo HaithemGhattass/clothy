@@ -16,10 +16,10 @@ extension UIImage {
         guard let inputImage = CIImage(image: self) else { return nil }
 
         // Create an extent vector (a frame with width and height of our current input image)
-        let extentVector = CIVector(x: inputImage.extent.origin.x,
-                                    y: inputImage.extent.origin.y,
-                                    z: inputImage.extent.size.width,
-                                    w: inputImage.extent.size.height)
+        let extentVector = CIVector(x: inputImage.extent.origin.x + inputImage.extent.size.width/2,
+                                    y: inputImage.extent.origin.y + inputImage.extent.size.height/2,
+                                    z: 50,
+                                    w: 50)
 
         // create a CIAreaAverage filter, this will allow us to pull the average color from the image later on
         guard let filter = CIFilter(name: "CIAreaAverage",

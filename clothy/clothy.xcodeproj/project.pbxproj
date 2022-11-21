@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D500DAA1292B7E9C00E2C569 /* AddClothesCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500DAA0292B7E9C00E2C569 /* AddClothesCameraView.swift */; };
+		D500DAA5292B7FD100E2C569 /* ImgPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500DAA4292B7FD100E2C569 /* ImgPicker.swift */; };
+		D500DAA7292B816900E2C569 /* Classifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500DAA6292B816900E2C569 /* Classifier.swift */; };
+		D500DAAB292B837900E2C569 /* ImageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D500DAAA292B837900E2C569 /* ImageClassifier.swift */; };
+		D500DAB1292B9D2500E2C569 /* Resnet50.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = D500DAB0292B9D2500E2C569 /* Resnet50.mlpackage */; };
+		D500DAB3292BCBED00E2C569 /* ClothyCoreML.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D500DAB2292BCBED00E2C569 /* ClothyCoreML.mlmodel */; };
 		D51883DD2917EE25008799CA /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = D51883DC2917EE25008799CA /* RiveRuntime */; };
 		D51CDECB29182A4900A93D55 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51CDECA29182A4900A93D55 /* TabBar.swift */; };
 		D51CDECD29182CB000A93D55 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51CDECC29182CB000A93D55 /* SideMenu.swift */; };
@@ -14,6 +20,7 @@
 		D5272D40291FF9E8006D3628 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5272D3F291FF9E8006D3628 /* Profile.swift */; };
 		D5272D42291FFDE6006D3628 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5272D41291FFDE6006D3628 /* ProfileViewModel.swift */; };
 		D547E8892922ACE2006CD1D1 /* button.riv in Resources */ = {isa = PBXBuildFile; fileRef = D547E8882922ACE2006CD1D1 /* button.riv */; };
+		D54A8EE529295BD400853E15 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54A8EE429295BD400853E15 /* CameraView.swift */; };
 		D58A5B23291743E00067A00C /* clothyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58A5B22291743E00067A00C /* clothyApp.swift */; };
 		D58A5B25291743E00067A00C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58A5B24291743E00067A00C /* ContentView.swift */; };
 		D58A5B27291743E10067A00C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D58A5B26291743E10067A00C /* Assets.xcassets */; };
@@ -28,7 +35,7 @@
 		D5AED57729242D72001C625B /* FormInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AED57629242D72001C625B /* FormInfo.swift */; };
 		D5AED57F29245886001C625B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AED57E29245886001C625B /* Coordinator.swift */; };
 		D5AED581292458DE001C625B /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AED580292458DE001C625B /* UIImage+Extension.swift */; };
-		D5AED5832924813D001C625B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AED5822924813D001C625B /* ImagePicker.swift */; };
+		D5AED5832924813D001C625B /* ImagePicker00.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AED5822924813D001C625B /* ImagePicker00.swift */; };
 		D5AF936B29198026002DA67F /* PrefrencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF936A29198026002DA67F /* PrefrencesView.swift */; };
 		D5AF936D291986ED002DA67F /* PrefButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF936C291986ED002DA67F /* PrefButton.swift */; };
 		D5AF93732919A64D002DA67F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AF93722919A64D002DA67F /* LoginViewModel.swift */; };
@@ -78,6 +85,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D500DAA0292B7E9C00E2C569 /* AddClothesCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClothesCameraView.swift; sourceTree = "<group>"; };
+		D500DAA4292B7FD100E2C569 /* ImgPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgPicker.swift; sourceTree = "<group>"; };
+		D500DAA6292B816900E2C569 /* Classifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classifier.swift; sourceTree = "<group>"; };
+		D500DAAA292B837900E2C569 /* ImageClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassifier.swift; sourceTree = "<group>"; };
+		D500DAB0292B9D2500E2C569 /* Resnet50.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = Resnet50.mlpackage; sourceTree = "<group>"; };
+		D500DAB2292BCBED00E2C569 /* ClothyCoreML.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ClothyCoreML.mlmodel; sourceTree = "<group>"; };
 		D51883DA2917E7F3008799CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D51CDECA29182A4900A93D55 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		D51CDECC29182CB000A93D55 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
@@ -85,6 +98,7 @@
 		D5272D3F291FF9E8006D3628 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		D5272D41291FFDE6006D3628 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		D547E8882922ACE2006CD1D1 /* button.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = button.riv; path = ../Views/Navigation/button.riv; sourceTree = "<group>"; };
+		D54A8EE429295BD400853E15 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		D58A5B1F291743E00067A00C /* clothy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clothy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D58A5B22291743E00067A00C /* clothyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clothyApp.swift; sourceTree = "<group>"; };
 		D58A5B24291743E00067A00C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,7 +115,7 @@
 		D5AED57629242D72001C625B /* FormInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInfo.swift; sourceTree = "<group>"; };
 		D5AED57E29245886001C625B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D5AED580292458DE001C625B /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
-		D5AED5822924813D001C625B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		D5AED5822924813D001C625B /* ImagePicker00.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker00.swift; sourceTree = "<group>"; };
 		D5AF936A29198026002DA67F /* PrefrencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefrencesView.swift; sourceTree = "<group>"; };
 		D5AF936C291986ED002DA67F /* PrefButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefButton.swift; sourceTree = "<group>"; };
 		D5AF93722919A64D002DA67F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -206,7 +220,7 @@
 				D5AED57629242D72001C625B /* FormInfo.swift */,
 				D5AED57E29245886001C625B /* Coordinator.swift */,
 				D5AED580292458DE001C625B /* UIImage+Extension.swift */,
-				D5AED5822924813D001C625B /* ImagePicker.swift */,
+				D5AED5822924813D001C625B /* ImagePicker00.swift */,
 			);
 			path = clothy;
 			sourceTree = "<group>";
@@ -259,12 +273,18 @@
 		D5CB6DB12927DD3D009AD8C7 /* Clothes */ = {
 			isa = PBXGroup;
 			children = (
+				D500DAB0292B9D2500E2C569 /* Resnet50.mlpackage */,
+				D500DAB2292BCBED00E2C569 /* ClothyCoreML.mlmodel */,
 				D5CB6DA92927C195009AD8C7 /* MyClothesView.swift */,
 				D5CB6DAB2927C241009AD8C7 /* ClothesCard.swift */,
 				D5CB6DAD2927C8CB009AD8C7 /* MyClothesListView.swift */,
 				D5CB6DAF2927CBA7009AD8C7 /* ClothesDetailView.swift */,
 				D5CB6DB22927DD97009AD8C7 /* CategoriesView.swift */,
 				D5CB6DB42927E04F009AD8C7 /* CategoryViewDetails.swift */,
+				D500DAA0292B7E9C00E2C569 /* AddClothesCameraView.swift */,
+				D500DAA4292B7FD100E2C569 /* ImgPicker.swift */,
+				D500DAA6292B816900E2C569 /* Classifier.swift */,
+				D500DAAA292B837900E2C569 /* ImageClassifier.swift */,
 			);
 			path = Clothes;
 			sourceTree = "<group>";
@@ -290,6 +310,7 @@
 				D5ABCBBB291A05C000D0E5EF /* ForgotPWView.swift */,
 				D5ABCBBD291A095C00D0E5EF /* ProfileView.swift */,
 				D5AED57129241703001C625B /* ChangePasswordView.swift */,
+				D54A8EE429295BD400853E15 /* CameraView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -483,12 +504,14 @@
 			files = (
 				D5ABCBBC291A05C000D0E5EF /* ForgotPWView.swift in Sources */,
 				D5AED57229241703001C625B /* ChangePasswordView.swift in Sources */,
-				D5AED5832924813D001C625B /* ImagePicker.swift in Sources */,
+				D5AED5832924813D001C625B /* ImagePicker00.swift in Sources */,
 				D5EF612A2917CC0D00B8DF43 /* CustomFont.swift in Sources */,
 				D5AED581292458DE001C625B /* UIImage+Extension.swift in Sources */,
 				D5EF61202917CB7E00B8DF43 /* OnBoardingView.swift in Sources */,
+				D500DAA1292B7E9C00E2C569 /* AddClothesCameraView.swift in Sources */,
 				D5CB6DAA2927C195009AD8C7 /* MyClothesView.swift in Sources */,
 				D5AF936B29198026002DA67F /* PrefrencesView.swift in Sources */,
+				D500DAAB292B837900E2C569 /* ImageClassifier.swift in Sources */,
 				D58A5B25291743E00067A00C /* ContentView.swift in Sources */,
 				D51CDECD29182CB000A93D55 /* SideMenu.swift in Sources */,
 				D5E7B94E2919E4D20087AF12 /* User.swift in Sources */,
@@ -499,16 +522,21 @@
 				D5ABCBBE291A095C00D0E5EF /* ProfileView.swift in Sources */,
 				D51CDEDA2918869A00A93D55 /* SignUpView.swift in Sources */,
 				D5AF936D291986ED002DA67F /* PrefButton.swift in Sources */,
+				D54A8EE529295BD400853E15 /* CameraView.swift in Sources */,
 				D5C73913291BC55600DDBE1A /* DateUtils.swift in Sources */,
 				D5CB6DB52927E04F009AD8C7 /* CategoryViewDetails.swift in Sources */,
 				D5272D42291FFDE6006D3628 /* ProfileViewModel.swift in Sources */,
 				D5CB6DB32927DD97009AD8C7 /* CategoriesView.swift in Sources */,
+				D500DAB3292BCBED00E2C569 /* ClothyCoreML.mlmodel in Sources */,
 				D5AF93732919A64D002DA67F /* LoginViewModel.swift in Sources */,
 				D5CB6DAC2927C241009AD8C7 /* ClothesCard.swift in Sources */,
 				D5AED57F29245886001C625B /* Coordinator.swift in Sources */,
 				D5EF61222917CB9400B8DF43 /* SignInView.swift in Sources */,
+				D500DAA7292B816900E2C569 /* Classifier.swift in Sources */,
 				D5272D40291FF9E8006D3628 /* Profile.swift in Sources */,
+				D500DAA5292B7FD100E2C569 /* ImgPicker.swift in Sources */,
 				D5CB6DA82927BF8C009AD8C7 /* Clothes.swift in Sources */,
+				D500DAB1292B9D2500E2C569 /* Resnet50.mlpackage in Sources */,
 				D5CB6DB02927CBA7009AD8C7 /* ClothesDetailView.swift in Sources */,
 				D5AED57729242D72001C625B /* FormInfo.swift in Sources */,
 				D58A5B23291743E00067A00C /* clothyApp.swift in Sources */,

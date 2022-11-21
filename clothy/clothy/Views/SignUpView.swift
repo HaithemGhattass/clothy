@@ -94,16 +94,18 @@ struct SignUpView: View {
                         }
                         
                   
-                        VStack(alignment: .leading) {
-                            DatePicker("Birthdate", selection: $loginVM.birthdate,in: ...Date(),displayedComponents: [.date])
-                                .datePickerStyle(.automatic)
-                                .accentColor(Color(hex: "5f9fff"))
-                                .customFont(.subheadline)
-                                .foregroundColor(.secondary)
-                                .padding(15)
-                            
-                        }
                     }
+                    VStack(alignment: .leading) {
+                        
+                        DatePicker("Birthdate", selection: $loginVM.birthdate,in: ...Date(),displayedComponents: [.date])
+                            .datePickerStyle(.automatic)
+                            .accentColor(Color(hex: "5f9fff"))
+                            .customFont(.subheadline)
+                            .foregroundColor(.secondary)
+                            .padding(15)
+                        
+                    }
+
                     
                     VStack(alignment: .leading) {
                         Text("Gender")

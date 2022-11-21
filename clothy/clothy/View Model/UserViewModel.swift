@@ -31,7 +31,7 @@ final class UsersViewModel : ObservableObject{
     var birthdate: Date = Date()
     var preference: String = ""
     var gender: String = ""
-    var HOST_URL = "http://192.168.1.12:3000/"
+    var HOST_URL = "http://192.168.1.18:3000/"
     @Published var selectedgender: String = ""
 
       //var selectedgender: Gendr = .male
