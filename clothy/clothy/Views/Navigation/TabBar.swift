@@ -1,65 +1,152 @@
 //
 //  TabBar.swift
-//  clothy
+//  Clothy
 //
-//  Created by haithem ghattas on 6/11/2022.
+//  Created by haithem ghattas on 29/11/2022.
 //
-
 
 import SwiftUI
-import RiveRuntime
 
 struct TabBar: View {
-    @AppStorage("selectedTab") var selectedTab: Tab = .chat
-    let icon = RiveViewModel(fileName: "icons", stateMachineName: "CHAT_Interactivity", artboardName: "CHAT")
-    
+    @AppStorage("selectedTab")  var selectedTab: Tab = .home
+    @State var color: Color = .teal
+    @State var tabItemwidth: CGFloat = 0
+
+
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                content
-            }
-            .padding(12)
-            .background(Color("Background 2").opacity(0.8))
-            .background(.ultraThinMaterial)
-            .mask(RoundedRectangle(cornerRadius: 24, style: .continuous))
-            .shadow(color: Color("Background 2").opacity(0.3), radius: 20, x: 0, y: 20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .stroke(.linearGradient(colors: [.white.opacity(0.5), .white.opacity(0)], startPoint: .topLeading, endPoint: .bottomTrailing))
-            )
-            .padding(.horizontal, 24)
+        HStack {
+             buttons
         }
-      
+        .padding(.horizontal,8)
+        .padding(.top,14)
+        .frame(height:88, alignment: .top)
+        .background(.ultraThinMaterial,in: RoundedRectangle(cornerRadius: 34,style: .continuous))
+        .background(
+           background
+        )
+        .overlay(
+            overlay
+        )
+        .strokeStyle(cornerRadius: 34)
+        .frame(maxHeight: .infinity,alignment: .bottom)
+        .ignoresSafeArea()
     }
-    
-    
-    var content: some View {
+    var buttons : some View {
         ForEach(tabItems) { item in
             Button {
-            item.icon.setInput("active", value: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            item.icon.setInput("active", value: false)
-                }
-                withAnimation {
+                withAnimation(.spring(response: 0.3,dampingFraction: 0.5)){
                     selectedTab = item.tab
+                    color = item.color
+
                 }
             } label: {
-                item.icon.view()
-                    .frame(height: 36)
-                    .opacity(selectedTab == item.tab ? 1 : 0.5)
-                    .background(
-                        VStack {
-                            RoundedRectangle(cornerRadius: 2)
-                                .fill(Color.accentColor)
-                                .frame(width: selectedTab == item.tab ? 20 : 0, height: 4)
-                                .offset(y: -4)
-                                .opacity(selectedTab == item.tab ? 1: 0)
-                            Spacer()
-                        }
-                    )
+            
+                VStack(spacing: 0){
+                    Image(systemName: item.icon)
+                        .symbolVariant(.fill)
+                        .font(.body.bold())
+                        .frame(width: 44,height: 29)
+                    Text(item.text)
+                        .font(.caption2)
+                        .lineLimit(1)
+                }
+                .frame(maxWidth:.infinity)
+            }
+            .foregroundStyle(selectedTab == item.tab ? .primary : .secondary)
+            .blendMode(selectedTab == item.tab ? .overlay : .normal)
+            .overlay(
+                GeometryReader{ proxy in
+                    Color.clear.preference(key: TabPreferenceKey.self , value: proxy.size.width )
+                }
+            )
+            .onPreferenceChange(TabPreferenceKey.self){
+                value in
+                tabItemwidth = value
             }
         }
+    }
+    var background : some View {
+        HStack {
+            if selectedTab == .trade {
+                Spacer()
+                Spacer()
+                Spacer()
+            }
+            if selectedTab == .chat {
+                Spacer()
+            }
+            if selectedTab == .add {
+                Spacer()
+               
+            }
+            if selectedTab == .profile {
+                Spacer()
+            }
+            Circle().fill(color).frame(width: tabItemwidth)
+            if selectedTab == .home {
+                Spacer()
+            }
+            if selectedTab == .chat {
+                Spacer()
+                Spacer()
+                Spacer()
+            }
+            if selectedTab == .add {
+                Spacer()
+            }
+            if selectedTab == .trade {
+               Spacer()
+               
+            }
+     
+        }
+        .padding(.horizontal,8)
+    }
+    var overlay : some View {
+        HStack {
+            if selectedTab == .trade {
+                Spacer()
+                Spacer()
+                Spacer()
+            }
+            if selectedTab == .chat {
+                Spacer()
+                  
+          
+       
+               
+            }
+            if selectedTab == .add {
+                Spacer()
+             
+            }
+            if selectedTab == .profile {
+                Spacer()
+               
+            }
+            Rectangle().fill(color).frame(width: 28,height: 5)
+                .cornerRadius(3)
+                .frame(width:tabItemwidth)
+                .frame(maxHeight: .infinity , alignment : .top)
+            if selectedTab == .home {
+                Spacer()
+            }
+            if selectedTab == .chat {
+                Spacer()
+                Spacer()
+                Spacer()
+                
+            }
+            if selectedTab == .add {
+                Spacer()
+            }
+          
+            if selectedTab == .trade {
+               Spacer()
+               
+            }
+        }
+        .padding(.horizontal,8)
     }
 }
 
@@ -67,26 +154,4 @@ struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
         TabBar()
     }
-}
-
-struct TabItem: Identifiable {
-    var id = UUID()
-    var icon: RiveViewModel
-    var tab: Tab
-}
-
-var tabItems = [
-    TabItem(icon: RiveViewModel(fileName: "icons", stateMachineName: "CHAT_Interactivity", artboardName: "CHAT"), tab: .chat),
-    TabItem(icon: RiveViewModel(fileName: "icons", stateMachineName: "SEARCH_Interactivity", artboardName: "SEARCH"), tab: .search),
-    TabItem(icon: RiveViewModel(fileName: "icons", stateMachineName: "TIMER_Interactivity", artboardName: "TIMER"), tab: .timer),
-    TabItem(icon: RiveViewModel(fileName: "icons", stateMachineName: "BELL_Interactivity", artboardName: "BELL"), tab: .bell),
-    TabItem(icon: RiveViewModel(fileName: "icons", stateMachineName: "USER_Interactivity", artboardName: "USER"), tab: .user)
-]
-
-enum Tab: String {
-    case chat
-    case search
-    case timer
-    case bell
-    case user
 }

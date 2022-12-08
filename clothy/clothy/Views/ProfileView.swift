@@ -28,13 +28,14 @@ struct ProfileView: View {
     @State private var pseudo = ""
     @State private var email = ""
     @State private var phone = 0
-    @State private var gender = ""
+    @State private var gender = "Other"
     @State private var changepass = false
     @State private var trah = false
     @State var selectedItem = "Male"
     @State var options = ["Male", "Female", "Other"]
 
-      
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
 
 
     @State private var birthdate = Date()
@@ -92,11 +93,7 @@ struct ProfileView: View {
      
      
     var body: some View {
-        ZStack {
-            Color("Background").ignoresSafeArea()
-        
-        NavigationView {
-          
+                  
             Form {
                 
               
@@ -111,42 +108,16 @@ struct ProfileView: View {
                
                 
                
-                contact
-               // password
-                passwordd
-            //    gotopref //MARK: PREFS
-                
-                clearAll
+//                contact
+//               // password
+//                passwordd
+//            //    gotopref //MARK: PREFS
+//
+//                clearAll
                 
             }
             //MARK: ALERT!
-            .alert(isPresented: $presentAlert) {
-                Alert(
-                    title: Text("Pick a source"),
-                  
-                    primaryButton: .default(Text("Camera"), action: {
-                        self.sourceType = .camera
-                        self.isImagePickerDisplay.toggle()
 
-                      
-                    }),
-                    secondaryButton: .default(Text("Gallery"), action: {
-                        self.sourceType = .photoLibrary
-                        self.isImagePickerDisplay.toggle()
-                      
-
-                    })
-                )
-            
-            }
-            .sheet(isPresented: self.$isImagePickerDisplay) {
-                
-                ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
-
-
-
-
-        }
             .onAppear{
                
              
@@ -162,10 +133,10 @@ struct ProfileView: View {
            
             
          
-            .navigationBarTitle("Profile", displayMode: .inline)
+           
 
             .toolbar {
-                ToolbarItem(placement: .keyboard){
+                ToolbarItem(placement: .navigationBarTrailing){
                     Button("Done"){
                         changepass ? print("chp") : vm.editUser(completed: { (reponse)  in
                             
@@ -180,7 +151,8 @@ struct ProfileView: View {
                                 print("normalement jawk behy")
                             //    logIn()
                                 
-                                
+                                self.presentationMode.wrappedValue.dismiss()
+
                             } else {
                                 print("ERROR CANT CONNECT")
                             }
@@ -191,11 +163,14 @@ struct ProfileView: View {
                   //  .disabled(!vmp.isValid)
                 }
             }
+            .accentColor(.primary)
+            .listRowSeparatorTint(.blue)
+            .listRowSeparator(.hidden)
          
-        }
+        
        
 
-        }
+        
         
     }
    
@@ -209,57 +184,11 @@ struct ProfileViewPreviews: PreviewProvider {
 private extension ProfileView {
     var general: some View {
         Section {
-            //MARK: IMAGE
-           // let name = $vm.imageF
-                // Image(uiImage: selectedImage!)
-                AsyncImage(url: URL(string: vm.HOST_URL + "uploads/" +  vm.imageF)) { phase in
-            if let image = phase.image {
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .frame(width: 100, height: 100)
-                    .onTapGesture {
-                        presentAlert = true
 
-                    }
-                   
-            } else if phase.error != nil {
-                Image(systemName: "tshirt.fill")
-                
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .frame(width: 100, height: 100)
-                    .onTapGesture {
-                        presentAlert = true
-                    }
-               // Color.red // Indicates an error.
-            } else {
-                Color.blue // Acts as a placeholder.
-            }
-        }
-                        
-                  
-                 
-
-
-                
-                   
-                     
-                
-           
-                 
-        
-         
-        
-        
-         
             
             TextField(vm.pseudo,text: $vm.pseudo)
                 .textContentType(.nickname)
             
-               
             
             TextField(vm.firstname,text: $vm.firstname)
                 .textContentType(.name)
@@ -307,8 +236,8 @@ private extension ProfileView {
         
         
     header: {
-//        Text("General")
-//            .foregroundColor(.black)
+        Text("General")
+            .foregroundColor(.black)
         
         
     }footer: {
@@ -345,13 +274,7 @@ private extension ProfileView {
         }
         .headerProminence(.increased)
     }
-    var passwordd: some View {
-        Section {
-            NavigationLink( "Change Password"
-                            , destination: ChangePasswordView())
-            
-        }
-    }
+
     var clearAll: some View {
         Button(role: .destructive) {
             
@@ -388,42 +311,4 @@ private extension ProfileView {
  
   
 
-}
-struct ImagePickerView: UIViewControllerRepresentable {
-    
-    @Binding var selectedImage: UIImage?
-    @Environment(\.presentationMode) var isPresented
-    @StateObject private var vm = UsersViewModel()
-
-    var sourceType: UIImagePickerController.SourceType
-   
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = self.sourceType
-        imagePicker.delegate = context.coordinator // confirming the delegate
-       
-//        if(selectedImage != nil){
-//
-//            vm.PostVideoUrl(url: selectedImage!)
-//
-//
-//        }
-
-      
-        return imagePicker
-        
-        
-    }
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-        
-    }
-    
-    // Connecting the Coordinator class with this struct
-    func makeCoordinator() -> Coordinator {
-        
-        return Coordinator(picker: self)
-    }
-    
-    
 }

@@ -12,7 +12,7 @@ struct MyClothesView: View {
         
         NavigationView {
             ScrollView{
-                MyClothesListView(clothes: Clothes.all)
+             //   MyClothesListView(clothes: Clothes.all)
 
             }
             .navigationTitle("My Clothes")

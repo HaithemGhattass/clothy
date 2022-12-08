@@ -22,7 +22,7 @@ class LoginViewModel: ObservableObject {
 
 
     @Published var prefrences: String = "hiphop"
-    var HOST_URL = "http://192.168.1.18:3000"
+    var HOST_URL = "http://172.17.2.239:9090"
      var gender = "Other" 
     // var  utilisateur = User()
     
@@ -35,6 +35,7 @@ class LoginViewModel: ObservableObject {
    
 
     func inscription( completed: @escaping (Bool) -> Void) {
+        
         AF.request(HOST_URL+"/api/register",
                    method: .post,
                    parameters: [
@@ -49,11 +50,7 @@ class LoginViewModel: ObservableObject {
                   
                   
                     "birthdate": DateUtils.formatFromDate(date: birthdate)
-                    //"dateNaissance": DateUtils.formatFromDate(date: utilisateur.dateNaissance!) ,
-                    //"idPhoto": utilisateur.idPhoto!,
-                    //"sexe": utilisateur.sexe!,
-                    //"score": utilisateur.score!,
-                    //"bio": utilisateur.bio!
+                
                    ] ,encoding: JSONEncoding.default)
         .validate(statusCode: 200..<300)
         .validate(contentType: ["application/json"])
@@ -86,16 +83,19 @@ class LoginViewModel: ObservableObject {
                 print(jsonData)
                 //User().pseudo = jsonData["pseudo"].stringValue
                 let utilisateur = self.makeItem(jsonItem: jsonData["userr"])
-                UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "tokenConnexion")
+                UserDefaults.standard.setValue(jsonData["_id"].stringValue, forKey: "session")
+                //Bool  //setObject
+                print( UserDefaults.standard.string(forKey: "session") ?? "didnt store :ccccc ")
+
                 // UserDefaults.standard.setValue(utilisateur._id, forKey: "_id")
                 //       UserDefaults.standard.setValue(self.utilisateur.firstname, forKey: "firstname")
                 
-                
+                //isAuthenticated = true
                 
                 //  print(utilisateur.firstname ?? "aaz")
                 
                 
-                self.isAuthenticated = true
+              //  self.isAuthenticated = true
                 completed(true, utilisateur)
             case let .failure(error):
                 debugPrint(error)

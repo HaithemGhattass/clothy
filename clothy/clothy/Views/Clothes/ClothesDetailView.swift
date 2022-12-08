@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ClothesDetailView: View {
     var clothes : Clothes
+    var vm = UsersViewModel()
+    var ovm = OutfitViewModel()
     var body: some View {
         ScrollView {
-            AsyncImage(url: URL(string: clothes.image)){ image in
+            AsyncImage(url: URL(string: vm.HOST_URL + "upload/" + clothes.photo)){ image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -30,14 +32,14 @@ struct ClothesDetailView: View {
             .background(LinearGradient(gradient: Gradient(colors: [Color(.gray).opacity(0.3),Color(.gray)]), startPoint: .top, endPoint: .bottom))
 
             VStack(spacing: 30){
-                Text(clothes.name)
+                Text(clothes.description)
                     .font(.largeTitle)
                     .bold()
                     .multilineTextAlignment(.center)
                 HStack(alignment: .center, spacing: 20){
                     Text("Color")
                         .font(.headline)
-                    Text(clothes.color)
+                    Text(clothes.couleur)
                 }
                 VStack(alignment: .leading, spacing: 30){
                     Text(clothes.description)
@@ -56,6 +58,6 @@ struct ClothesDetailView: View {
 
 struct ClothesDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ClothesDetailView(clothes: Clothes.all[0])
+        ClothesDetailView(clothes: Clothes(typee: "a", couleur: "a", photo: "a", userID: "a", taille: "a", description: "a", id: "a", createdAt: "a", updatedAt: "a", v: 2))
     }
 }

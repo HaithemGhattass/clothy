@@ -22,30 +22,25 @@ final class UsersViewModel : ObservableObject{
     @Published var lastname: String = ""
     @Published var phone: Int = 0
     var pseudo: String = ""
-    var id: String = ""
+    @Published var id: String = ""
     var v: Int = 0
     var createdAt: String = ""
     var updatedAt: String = ""
     var imageF: String = ""
-
+    @Published var idT: String = ""
     var birthdate: Date = Date()
     var preference: String = ""
     var gender: String = ""
-    var HOST_URL = "http://192.168.1.18:3000/"
+    @Published  var HOST_URL = "http://172.17.2.239:9090/"
+    // https://cicero-crm.com/
     @Published var selectedgender: String = ""
-
+// api/once/id
       //var selectedgender: Gendr = .male
-
-
-
-
-
-    
-    
+ 
         @Published private(set) var isRefreshing = false
     
     func fetchuser(){
-        let userstringurl = HOST_URL+"api/us"
+        let userstringurl = HOST_URL+"api/SessionUser"
         if let url = URL(string:userstringurl) {
             URLSession
                 .shared
@@ -81,7 +76,8 @@ final class UsersViewModel : ObservableObject{
                                                 self?.phone =  users[0].phone
                                                 self?.pseudo =  users[0].pseudo
                                                 self?.id =  users[0].id
-                                                
+                                                UserDefaults.standard.set(users[0].id, forKey: "userID")
+                                              
                                                 self?.birthdate = DateUtils.formatFromString(string: users[0].birthdate)
                                                 
                                                 self?.createdAt =  users[0].createdAt
@@ -118,7 +114,7 @@ final class UsersViewModel : ObservableObject{
     }
     func editUser(completed: @escaping (Bool) -> Void) {
        // print(utilisateur)
-        AF.request(HOST_URL + "api/up/"+id,
+        AF.request(HOST_URL + "api/updatePR/"+id,
                    method: .put,
                    parameters: [
                     
@@ -205,21 +201,69 @@ final class UsersViewModel : ObservableObject{
 
     }
     
- // 9090/uploads (get image)
-//    func getImage() {
-//        AF.request(HOST_URL + "uploads/"+ imageF).responseImage { response in
-//            debugPrint(response)
-//
-//            print(response.request)
-//            print(response.response)
-//            debugPrint(response.result)
-//
-//            if case .success(let image) = response.result {
-//                print("image downloaded: \(image)")
-//            }
-//        }
-//
-//    }
+    func getUserTrade(id: String){
+        let userstringurl = HOST_URL+"api/once/"+id
+        if let url = URL(string:userstringurl) {
+            URLSession
+                .shared
+                .dataTask(with: url) { [weak self] data, response, error in
+                    
+                    
+                    DispatchQueue.main.async {
+                        
+                        defer {
+                            self?.isRefreshing = false
+                        }
+                        
+                        if let error = error {
+                            self?.hasError = true
+                            self?.error = UserError.custom(error: error)
+                            print(error)
+                        } else {
+                            
+                            let decoder = JSONDecoder()
+                            decoder.keyDecodingStrategy = .convertFromSnakeCase // Handle properties that look like first_name > firstName
+                         //   print("fetshing ...")
+                            //   print(data)
+                            if let data = data,
+                               let users = try? decoder.decode([User].self, from: data) {
+                                
+                                
+                                self?.users = users
+                                self?.imageF =  users[0].imageF
+                                self?.email =  users[0].email
+                                self?.password =  users[0].password
+                                self?.firstname =  users[0].firstname
+                                self?.lastname =  users[0].lastname
+                                self?.phone =  users[0].phone
+                                self?.pseudo =  users[0].pseudo
+                               // self?.id =  users[0].id
+                                self?.idT =  users[0].id
+                                UserDefaults.standard.set(users[0].id, forKey: "userID")
+                                
+                                self?.birthdate = DateUtils.formatFromString(string: users[0].birthdate)
+                                
+                                self?.createdAt =  users[0].createdAt
+                                self?.selectedgender =  users[0].gender
+                              
+                                print(data)
+                            
+                                
+                               // print(self?.firstname ?? "fff")
+                                
+                            } else {
+                                self?.hasError = true
+                                self?.error = UserError.failedToDecode
+                                // print(error)
+                                //   print(self?.error)
+                                //    print(self?.hasError)
+                            }
+                        }
+                    }
+                }.resume()
+        }
+    }
+
     
 }
 extension UsersViewModel {

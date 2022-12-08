@@ -5,19 +5,23 @@
 //  Created by haithem ghattas on 6/11/2022.
 //
 
-import SwiftUI
 
+import SwiftUI
+import Firebase
 @main
 struct clothyApp: App {
-    @StateObject private var loginVM = LoginViewModel()
-    @State var show = false
+    init(){
+        FirebaseApp.configure()
+    }
+    @StateObject var model = Model()
 
     var body: some Scene {
         WindowGroup {
+          ContentView()
+               .environmentObject(model)
             
-        
-            ContentView()
-            
+          
+
         }
     }
 }

@@ -21,11 +21,7 @@ struct ChangePasswordView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
-       ZStack {
-            Color("Background").ignoresSafeArea()
-        
-        NavigationView {
-          
+                  
             Form {
                 Section {
                     // 6
@@ -63,7 +59,7 @@ struct ChangePasswordView: View {
                 
                 
             header: {
-                Text("General")
+                Text("Password")
                     .foregroundColor(.black)
                 
                 
@@ -77,6 +73,7 @@ struct ChangePasswordView: View {
                   
                 
             }
+        
             .onAppear(perform: vm.fetchuser)
             
           
@@ -84,10 +81,8 @@ struct ChangePasswordView: View {
            
          
           
-          
-            .navigationTitle("Edit Password")
             .toolbar {
-                ToolbarItem(placement: .keyboard){
+                ToolbarItem(placement: .navigationBarTrailing){
                     Button("Done"){
                         vm.changepassword(password: mypass, newpass: formInfo.newpass, completed: {  (succ) in if (succ){
                             print("succ")
@@ -104,6 +99,9 @@ struct ChangePasswordView: View {
                   //  .disabled(!vmp.isValid)
                 }
             }
+            .accentColor(.primary)
+            .listRowSeparatorTint(.blue)
+            .listRowSeparator(.hidden)
             
          
         
@@ -135,14 +133,14 @@ struct ChangePasswordView: View {
             
 
          
-        }
+        
 
         
 
-        .navigationBarBackButtonHidden(true)
+      //  .navigationBarBackButtonHidden(true)
        
 
-        }
+        
     }
     
 }
