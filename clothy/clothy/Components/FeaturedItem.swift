@@ -25,10 +25,7 @@ struct FeaturedItem: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundStyle(.linearGradient(colors: [.primary,.primary.opacity(0.5)], startPoint: .topLeading, endPoint: .bottomTrailing))
-            Text(closet.subtitle.uppercased())
-                .font(.footnote)
-                .fontWeight(.semibold)
-                .foregroundStyle(.secondary)
+           
             Text(closet.text)
                 .font(.footnote)
                 .multilineTextAlignment(.leading)

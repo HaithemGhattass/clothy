@@ -13,8 +13,10 @@ struct Tickets: View {
     
     @StateObject private var ovm = OutfitViewModel()
     @StateObject private var tvm = TradeViewModel()
+    @StateObject private var mg = WebSocketManager()
 
-       
+
+
     var body: some View {
         ZStack {
             ForEach(tvm.tickets,id: \.idd) { ticket in
@@ -63,7 +65,7 @@ struct InfiniteStackView: View {
     @State var height : CGFloat = 0
     var body : some View {
         VStack{
-            Ticket(title : ticket.typee, subtitle : ticket.taille ,top : ticket.couleur,bottom : ticket.photo, taille: ticket.taille,color: ticket.couleur, description: ticket.description, height : $height)
+            Ticket(title : ticket.typee, subtitle : ticket.taille ,top : ticket.couleur,bottom : ticket.photo, taille: ticket.taille,color: ticket.couleur, height : $height)
         }
         .frame(maxWidth :.infinity , maxHeight :.infinity)
         .zIndex(getIndex() == 0 && offset > 100 ? Double(CGFloat(tickets.count) - getIndex()) - 1 : CGFloat(tickets.count) - getIndex())

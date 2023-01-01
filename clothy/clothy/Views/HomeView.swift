@@ -14,7 +14,8 @@ struct HomeView: View {
     @State var showcloset = false
     @State var showstatusbar = true
     @State var selectedcloset: Closet = closets[0]
-
+    
+    
     
     @EnvironmentObject var model : Model
     var body: some View {
@@ -47,6 +48,7 @@ struct HomeView: View {
 
             }
         }
+      
         .statusBar(hidden: !showstatusbar)
         .onChange(of: show){ newValue in
             withAnimation(.closeCard){

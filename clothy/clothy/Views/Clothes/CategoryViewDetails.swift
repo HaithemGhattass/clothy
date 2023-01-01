@@ -95,7 +95,7 @@ var body : some View {
         }
        // Spacer()
 
-        Text(clothes.description)
+        Text(clothes.category)
             .font(.title)
             .fontWeight(.bold)
             .foregroundColor(.white)
@@ -144,7 +144,7 @@ var body : some View {
     VStack(alignment: .leading) {
 
        
-       AsyncImage(url: URL(string: vm.HOST_URL + "upload/" + photo )){ image in
+       AsyncImage(url: URL(string: HostUtils().HOST_URL + "upload/" + photo )){ image in
            image
                .resizable()
                .renderingMode(.original)

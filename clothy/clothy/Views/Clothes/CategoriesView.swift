@@ -7,38 +7,6 @@
 
 import SwiftUI
 
-//struct CategoriesView: View {
-//    var body: some View {
-//        NavigationView {
-//            List{
-//                ForEach(Category.allCases ) { category in
-//                    NavigationLink{
-//                      CategoryViewDetails(category: category)
-//                    }label: {
-//                        Text(category.rawValue )
-//                    }
-//
-//                }
-//                NavigationLink{
-//                        AddClothesCameraView(sourceType:.photoLibrary , classifier: ImageClassifier())
-//
-//                }label: {
-//                    Text("add clothes")
-//
-//                }
-//
-//            }
-//            .navigationBarTitle("Categories", displayMode: .inline)
-//
-//
-//
-//        }
-//        .navigationViewStyle(.stack)
-//
-//
-//    }
-//}
-
 struct CategoriesView: View {
 
   
@@ -60,15 +28,15 @@ struct CategoriesView: View {
                        }
                        Spacer()
                    }
-                       
-                
-                       
-                   
                    .padding(.leading, 60.0)
                    
                    ScrollView(.horizontal, showsIndicators: false) {
                        HStack(spacing: 30.0) {
                            content
+                               .sheet(isPresented: self.$showContent) {
+                                   CategoryViewDetails(categroie:s)
+                                  // CategoryViewDetails()
+                               }
                          
                        }
                        .padding(.leading, 30)
@@ -93,27 +61,32 @@ extension CategoriesView {
     var content: some View {
         ForEach(CategorieItems) { item in
            
-            Button(action: { showContent.toggle();
-                s = item.title; print(item.title) }) {
+
                 GeometryReader { geometry in
                     CategorieView(title: item.title,
                                  // image: item.image,
                                   color: item.color,
                                   shadowColor: item.shadowColor, categorie: item.categorie)
+                    .onTapGesture {
+                        s = item.title
+                        print(item.title)
+                        showContent.toggle()
+                    }
                   
-
+                   
                     .rotation3DEffect(Angle(degrees:
                                                 Double(geometry.frame(in: .global).minX - 30) / -40), axis: (x: 0, y: 10.0, z: 0))
                 }
                 .frame(width: 246, height: 360)
-            }
-            .sheet(isPresented: self.$showContent) {
-               CategoryViewDetails(categroie:s)
-               // CategoryViewDetails()
-            }
+            
+           
             
         }
+
+
+       
     }
+    
 }
 
 

@@ -9,19 +9,19 @@ import SwiftUI
 
 struct SuggestionView: View {
     var namespace : Namespace.ID
+    @StateObject private var weatherAPIClient = WeatherAPIClient()
+
     @Binding var show : Bool
     @State var appear = [false,false,false]
     @EnvironmentObject var model : Model
     @State var viewstate : CGSize = .zero
     @State var isDraggable = true
+    @State var formulaire = true
     var body: some View {
         ZStack {
             ScrollView {
                 cover
-                content
-                    .offset(y:120)
-                    .padding(.bottom,200)
-                    .opacity(appear[2] ? 1 : 0)
+               
                 
             }
             .background(Color("Background"))
@@ -84,9 +84,7 @@ struct SuggestionView: View {
         }
         .frame(height: 500)
     }
-    var content : some View {
-        Text("random form piw piw paw")
-    }
+   
     var button : some View {
         Button {
             withAnimation(.closeCard){
@@ -104,10 +102,68 @@ struct SuggestionView: View {
         .padding(20)
         .ignoresSafeArea()
     }
+    var formulaireContent : some View {
+        VStack(alignment: .leading, spacing: 12){
+            Text("choose Your outfit")
+                .font(.largeTitle.weight(.bold))
+                .matchedGeometryEffect(id: "title", in: namespace)
+                .frame(maxWidth: .infinity,alignment: .leading)
+            Text("let clothyy help".uppercased())
+                .font(.footnote.weight(.semibold))
+                .matchedGeometryEffect(id: "subtitle", in: namespace)
+            Text("let clothy choose for you")
+                .font(.footnote)
+                .matchedGeometryEffect(id: "text", in: namespace)
+            
+            
+            Divider()
+                .opacity(appear[0] ? 1 : 0)
+            HStack {
+                Image("Avatar Default")
+                    .resizable()
+                    .frame(width: 26,height: 26)
+                    .cornerRadius(10)
+                    .padding(8)
+                    .background(.ultraThinMaterial, in :
+                                    RoundedRectangle(cornerRadius: 18,style: .continuous))
+                    .strokeStyle(cornerRadius: 18)
+                Text("weather today is ")
+                    .font(.footnote)
+            }
+            .opacity(appear[1] ? 1 : 0)
+            Divider()
+                .opacity(appear[0] ? 1 : 0)
+            HStack {
+                Image("Avatar Default")
+                    .resizable()
+                    .frame(width: 26,height: 26)
+                    .cornerRadius(10)
+                    .padding(8)
+                    .background(.ultraThinMaterial, in :
+                                    RoundedRectangle(cornerRadius: 18,style: .continuous))
+                    .strokeStyle(cornerRadius: 18)
+                Text("what are out plans for today ")
+                    .font(.footnote)
+                    .onTapGesture {
+                        formulaire.toggle()
+                        
+                    }
+            }
+        }
+            .padding(20)
+            .background(
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+                    .mask(RoundedRectangle(cornerRadius: 30,style: .continuous))
+                    .matchedGeometryEffect(id: "blur", in: namespace)
+            )
+            .offset(y:250)
+            .padding(20)
+    }
     var overlayContent : some View {
         
             VStack(alignment: .leading, spacing: 12){
-                Text("choose Your outfit")
+                Text(formulaire ? "Tell us more" :  "choose Your outfit" )
                     .font(.largeTitle.weight(.bold))
                     .matchedGeometryEffect(id: "title", in: namespace)
                     .frame(maxWidth: .infinity,alignment: .leading)
@@ -121,19 +177,82 @@ struct SuggestionView: View {
                 
                 Divider()
                     .opacity(appear[0] ? 1 : 0)
-                HStack {
-                    Image("Avatar Default")
-                        .resizable()
-                        .frame(width: 26,height: 26)
-                        .cornerRadius(10)
-                        .padding(8)
-                        .background(.ultraThinMaterial, in :
-                                        RoundedRectangle(cornerRadius: 18,style: .continuous))
-                        .strokeStyle(cornerRadius: 18)
-                    Text("weather today is ")
-                        .font(.footnote)
-                }
+
+                    HStack(alignment: .center, spacing: 10) {
+                                Spacer()
+                                if let currentWeather = weatherAPIClient.currentWeather  {
+                                    HStack(alignment: .center, spacing: 16) {
+                                        currentWeather.weatherCode.image
+                                            .font(.largeTitle)
+                                        Text("\(currentWeather.temperature)º")
+                                            .font(.largeTitle)
+                                    }
+                                    Text(currentWeather.weatherCode.description)
+                                        .font(.body)
+                                        .multilineTextAlignment(.center)
+                                } else {
+                                    Text("No weather info available yet.\nTap on refresh to fetch new data.\nMake sure you have enabled location permissions for the app.")
+                                        .font(.body)
+                                        .multilineTextAlignment(.center)
+                                    Button("Refresh", action: {
+                                        Task {
+                                            await weatherAPIClient.fetchWeather()
+                                        }
+                                    })
+                                }
+                                Spacer()
+                            }
+                            .onAppear {
+                                Task {
+                                    await weatherAPIClient.fetchWeather()
+                                }
+                            }
+                
                 .opacity(appear[1] ? 1 : 0)
+                Divider()
+                    .opacity(appear[0] ? 1 : 0)
+                VStack{
+                    HStack {
+                        Image("Avatar Default")
+                            .resizable()
+                            .frame(width: 26,height: 26)
+                            .cornerRadius(10)
+                            .padding(8)
+                            .background(.ultraThinMaterial, in :
+                                            RoundedRectangle(cornerRadius: 18,style: .continuous))
+                            .strokeStyle(cornerRadius: 18)
+                        
+                        Text("what are out plans for today ")
+                            .font(.footnote)
+                            .onTapGesture {
+                                formulaire.toggle()
+                            }
+                    }
+                    HStack(alignment:  .center, spacing: 30 ){
+                        Divider().hidden()
+                        Button{
+                            //MARK: CHILLING
+                        }label: {
+                            Text("Chilling")
+                        }
+                        Button{
+                            //MARK: Date
+                        }label: {
+                            Text("Date")
+                        }
+                        Button{
+                            //MARK: Work
+                        }label: {
+                            Text("Work")
+                        }
+                        Button{
+                            //MARK: SPORT
+                        }label: {
+                            Text("Sport")
+                        }
+                    }
+                 
+                }
             }
                 .padding(20)
                 .background(

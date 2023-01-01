@@ -13,10 +13,9 @@ struct Ticket: View {
     @State var top = "thor-top"
     @State var bottom = "thor-bottom"
     @State var taille = "XL"
-    @State var color = "blue"
-    @State var description = "zara"
+    @State var color = "#FF0000"
     @Binding var height : CGFloat
-    var vm = UsersViewModel()
+    
 
     var gradient = [Color("cyan"),Color("cyan").opacity(0),Color("cyan").opacity(0)]
     var body: some View {
@@ -31,7 +30,7 @@ struct Ticket: View {
             .frame(width: 250, height: 325 ,alignment: .top)
             .foregroundColor(.white)
             .background(
-                AsyncImage(url: URL(string: vm.HOST_URL + "upload/" + bottom )){ image in
+                AsyncImage(url: URL(string: HostUtils().HOST_URL + "uploads/outfit/" + bottom )){ image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -51,7 +50,7 @@ struct Ticket: View {
             .mask(
                
               
-                AsyncImage(url: URL(string: vm.HOST_URL + "upload/" + bottom )){ image in
+                AsyncImage(url: URL(string: HostUtils().HOST_URL + "upload/" + bottom )){ image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -94,7 +93,9 @@ struct Ticket: View {
                         Text("color:")
                             .fontWeight(.medium)
                             .foregroundColor(Color("lightPurple"))
-                            Text(color)
+                           // Text(color)
+                        Circle().fill(Color(hex: color))
+                            .frame(width: 20, height: 20)
                             .foregroundColor(.black)
                     }
                     
@@ -105,7 +106,7 @@ struct Ticket: View {
                         Text("description:")
                             .fontWeight(.medium)
                             .foregroundColor(Color("lightPurple"))
-                            Text(description)
+                            Text("description")
                             .foregroundColor(.black)
                     }
 
