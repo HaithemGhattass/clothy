@@ -1,0 +1,19 @@
+desc "Create app on developer portal and App Store connect" 
+lane :create_app do
+   create_app_online # produce
+end
+platform :ios do
+  desc "Sync signing"
+  lane :signing do
+    
+  end
+  desc "Build binary"
+  lane :build do
+    signing
+  end
+
+  desc "Release"
+  lane :release do
+    Build  
+  end
+end
