@@ -13,6 +13,7 @@ struct Ticket: View {
     @State var top = "thor-top"
     @State var bottom = "thor-bottom"
     @State var taille = "XL"
+    @State var typee = "XL"
     @State var color = "#FF0000"
     @Binding var height : CGFloat
     
@@ -30,7 +31,7 @@ struct Ticket: View {
             .frame(width: 250, height: 325 ,alignment: .top)
             .foregroundColor(.white)
             .background(
-                AsyncImage(url: URL(string: HostUtils().HOST_URL + "uploads/outfit/" + bottom )){ image in
+                AsyncImage(url: URL(string: HostUtils().HOST_URL + "uploads/" + bottom )){ image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -50,7 +51,7 @@ struct Ticket: View {
             .mask(
                
               
-                AsyncImage(url: URL(string: HostUtils().HOST_URL + "upload/" + bottom )){ image in
+                AsyncImage(url: URL(string: HostUtils().HOST_URL + "uploads/" + bottom )){ image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -98,18 +99,6 @@ struct Ticket: View {
                             .frame(width: 20, height: 20)
                             .foregroundColor(.black)
                     }
-                    
-                    
-                }
-                HStack(spacing: 20.0){
-                    HStack(spacing: 4.0){
-                        Text("description:")
-                            .fontWeight(.medium)
-                            .foregroundColor(Color("lightPurple"))
-                            Text("description")
-                            .foregroundColor(.black)
-                    }
-
                     
                     
                 }

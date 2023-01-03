@@ -25,6 +25,7 @@ struct SignUpView: View {
     @State var details = false
     @State var comfirmingpw = ""
     @State var comfirmingpw2 = ""
+    @State var phoneerr = ""
     @State var wronngemail = false
     @State var wrongfirstname = false
     @State var wronglastname = false
@@ -36,6 +37,11 @@ struct SignUpView: View {
             VStack(spacing: 24) {
                 Text("Sign Up")
                     .font(.largeTitle).bold()
+                  
+                    Link(" by signing up you automaticly accept Clothy Terms of service and conditions", destination: URL(string: HostUtils().HOST_URL + "term")!)
+                    .font(.caption).bold()
+                
+     
                 if general{
                     generalinfo
                 }
@@ -159,6 +165,7 @@ struct SignUpView: View {
             Text("phone number")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
+            + Text(phoneerr).foregroundColor(.red).font(.subheadline)
             TextField("", text: $phone)
                 .customTextField(image: Image(systemName: "phone.circle"))
                 .keyboardType(.numberPad)
@@ -197,7 +204,7 @@ struct SignUpView: View {
 
             HStack{
                 Button{
- 
+
                     details.toggle()
                     general.toggle()
                 }label: {
@@ -212,11 +219,16 @@ struct SignUpView: View {
                     .shadow(color: Color(hex: "5f9fff").opacity(0.5), radius: 20, x: 0, y: 10)
                 }
                 Button{
-                    if(password != comfirmpassword){
+                    if(phone.count < 8){
+                        phoneerr = "phone number must have at least 8 degits"
+                    } else
+                    if(password.count < 5){
+                        comfirmingpw = "should have at least 5 characters"
+                        comfirmingpw2 = "should have at least 5 characters"
+                    }
+                    else if(password != comfirmpassword){
                         comfirmingpw = "and comfirm password should be identic"
                         comfirmingpw2 = "and password should be identic"
-
-                        
                     }
                    else{
                        let user = User(firstname: firstname, lastname: lastname, pseudo: pseudo, birthdate: DateUtils.formatFromDate(date: birthdate), imageF: "", email: email, password: password, preference: "password", gender: gender, id: "", createdAt: "", updatedAt: "", isVerified: false, phone: Int(phone) ?? 000, v: 1)

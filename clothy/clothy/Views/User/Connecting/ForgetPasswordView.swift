@@ -61,7 +61,8 @@ struct ForgetPasswordView: View {
                 .customTextField()
                 .keyboardType(.emailAddress)
             Button{
-                Vm.forgotpassword(email: email.firstUppercased, completed: { (success) in
+                let newmail = email.firstUppercased
+                Vm.forgotpassword(email: newmail, completed: { (success) in
                     if(success){
                         code.toggle()
                         findmail.toggle()
@@ -97,7 +98,9 @@ struct ForgetPasswordView: View {
                 .keyboardType(.numberPad)
                 
             Button{
-                Vm.forgotpasswordcode(email: email, code: Int(recupcode) ?? 0, completed:  { (success) in
+                let newmail = email.firstUppercased
+
+                Vm.forgotpasswordcode(email: newmail, code: Int(recupcode) ?? 0, completed:  { (success) in
                     if (success){
                         comfirmpw.toggle()
                         code.toggle()
@@ -147,7 +150,9 @@ struct ForgetPasswordView: View {
                 if (!Vm.isValidPassword(password: password)){
                     notstrongpass = true
                 } else{
-                    Vm.setnewpw(email: email, newpw: password, completed:  { (success) in
+                    let newmail = email.firstUppercased
+
+                    Vm.setnewpw(email: newmail, newpw: password, completed:  { (success) in
                         if (success){
                            // comfirmpw.toggle()
                            // code.toggle()

@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var showsignin = false
     @State var forgetpw = false
     @State var showSignUp = false
-    @State var logged = false
+    @State var logged = UserDefaults.standard.bool(forKey: "logged")
     
  
     

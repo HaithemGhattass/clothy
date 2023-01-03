@@ -5,14 +5,20 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.googleusercontent.apps.428255612246-epovtvkeohacjjskg93buoikmbi3q75k</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb919646848931791</string>
+				<string>com.googleusercontent.apps.428255612246-epovtvkeohacjjskg93buoikmbi3q75k</string>
 			</array>
 		</dict>
 	</array>
 	<key>FacebookDisplayName</key>
 	<string>clothy</string>
+	<key>GIDClientID</key>
+	<string>428255612246-epovtvkeohacjjskg93buoikmbi3q75k.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

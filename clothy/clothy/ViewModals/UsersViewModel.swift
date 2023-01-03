@@ -77,6 +77,11 @@ final class UsersViewModel : ObservableObject{
             switch response.result {
                 
             case .success:
+                let jsonData = JSON(response.data!)
+                                print(jsonData)
+                                let utilisateur = self.makeItem(jsonItem: jsonData["userr"])
+                                UserDefaults.standard.setValue(utilisateur.id, forKey: "session")
+
                 completed(true)
             case .failure:
                 completed(false)
@@ -273,6 +278,77 @@ final class UsersViewModel : ObservableObject{
         }
 
     }
+    func deleteMethod() {
+                guard let url = URL(string: HostUtils().HOST_URL+"api/deleteUser/"+UserDefaults.standard.string(forKey: "session")!)  else {
+                    print("Error: cannot create URL")
+                    return
+                }
+                // Create the request
+                var request = URLRequest(url: url)
+                request.httpMethod = "DELETE"
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard error == nil else {
+                        print("Error: error calling DELETE")
+                        print(error!)
+                        return
+                    }
+                    guard let data = data else {
+                        print("Error: Did not receive data")
+                        return
+                    }
+                    guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                        print(url)
+                        
+                        print("Error: HTTP request failed")
+                        return
+                    }
+                    do {
+                        guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                            print("Error: Cannot convert data to JSON")
+                            return
+                        }
+                        guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                            print("Error: Cannot convert JSON object to Pretty JSON data")
+                            return
+                        }
+                        guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                            print("Error: Could print JSON in String")
+                            return
+                        }
+                        let defaults = UserDefaults.standard
+                        //defaults.removeObject(forKey: "jsonwebtoken")
+                     defaults.removeObject(forKey: "session")
+                        
+                        print(prettyPrintedJson)
+                    } catch {
+                        print("Error: Trying to convert JSON data to string")
+                        return
+                    }
+                }.resume()
+            }
+        func signout() {
+            AF.request(HostUtils().HOST_URL+"api/logout",
+                       method: .get
+                       )
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("code is true")
+                    let defaults = UserDefaults.standard
+                    //defaults.removeObject(forKey: "jsonwebtoken")
+                 defaults.removeObject(forKey: "session")
+                case let .failure(error):
+                    print(error)
+                  
+                }
+            }
+                       
+            
+              
+              
+           }
     func changepassword(password: String , newpass: String ,completed: @escaping (Bool) -> Void) {
        // print(utilisateur)
         AF.request(HostUtils().HOST_URL + "api/updatepass",

@@ -15,6 +15,7 @@ struct AddClothesCameraView: View {
     @State var alertedit = false
     @State private var color = Color.red
     @State private var details = false
+    @State private var detailschoose = false
     @State private var typestring = ""
     @State private var categorystring = ""
     @State private var sizestring = ""
@@ -22,6 +23,7 @@ struct AddClothesCameraView: View {
     @State private var drawUIColor: UIColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
     @State private var drawOpacity: Double = 1.0
     @State private var drawHexNumber: String = "#FF0000"
+    @State private var pointure = 28
 
     @State private var selectedcategorie = 4
     @State private var selectedsize = 1
@@ -88,7 +90,12 @@ struct AddClothesCameraView: View {
                                             .resizable()
                                             .scaledToFit()
                                             .onTapGesture{
+                                                if(classifier.imageClass == "shoes"){
+                                                    detailschoose.toggle()
+                                                }else {
                                                     details.toggle()
+                                                }
+                                                    
                                             }
                                     }
                                   
@@ -136,6 +143,19 @@ struct AddClothesCameraView: View {
 
                         }
                 }
+                .sheet(isPresented: $detailschoose) {
+                    shoesdetail
+                        .onAppear{
+                            bgColor = Color(uiImage?.averageColor ?? .clear)
+                            getColorsFromPicker(pickerColor: bgColor)
+                         
+                                selectedcategorie = 1
+                              
+                          
+
+                        }
+                }
+            
                 
                 .sheet(isPresented: $isPresenting){
                     ImgPicker(uiImage: $uiImage, isPresenting:  $isPresenting, sourceType: $sourceType)
@@ -269,9 +289,85 @@ struct AddClothesCameraView: View {
                 if(selectedsize == 3){
                     sizestring = "XL"
                 }
-                
+                getColorsFromPicker(pickerColor: bgColor)
                 ovm.PostImage(url: uiImage!, type: categorystring, category: typestring, taille: sizestring,color:drawHexNumber)
                 details.toggle()
+            }label: {
+                Text("Done").bold()
+            })
+        }
+
+        
+        }
+    var shoesdetail: some View {
+        NavigationView {
+            Form {
+                Section(header: Text("General Information")) {
+                    Picker("Category", selection: $selectedcategorie) {
+                        
+                        Text("shoes").tag(1)
+                       
+                    }
+                    .pickerStyle(.menu)
+                    ColorPicker("Color", selection: $bgColor)
+                    Picker("Type", selection: $selectedtype) {
+                        Text("Formal").tag(0)
+                        Text("Sport").tag(1)
+                        Text("Evereyday").tag(2)
+                        
+                        
+                    }
+                    .pickerStyle(.menu)
+                    
+                }
+    
+                    Section(header: Text("Size")) {
+            
+                            Picker("size", selection: $pointure) {
+                                ForEach(28...52, id: \.self) { //<-
+                                                           Text("\($0)")
+                                                       }
+                                
+                            }
+                        
+                            .pickerStyle(.wheel)
+                    }
+                
+            
+
+                
+            }
+            .navigationTitle("Add Details")
+            .navigationBarItems(trailing: Button{
+                if(selectedtype == 0){
+                    categorystring = "Formal"
+                }
+                if(selectedtype == 1){
+                    categorystring = "Sport"
+                }
+                if(selectedtype == 2){
+                    categorystring = "Everyday"
+                }
+                if(selectedcategorie == 0){
+                    typestring = "hat"
+                }
+                if(selectedcategorie == 1){
+                    typestring = "shoes"
+                }
+                if(selectedcategorie == 2){
+                    typestring = "shoes"
+                }
+                if(selectedcategorie == 3){
+                    typestring = "shoes"
+                }
+                if(selectedcategorie == 4){
+                    typestring = "shoes"
+                }
+  
+                getColorsFromPicker(pickerColor: bgColor)
+                let str1 = "\(pointure)"
+                ovm.PostImage(url: uiImage!, type: categorystring, category: typestring, taille: str1,color:drawHexNumber)
+                detailschoose.toggle()
             }label: {
                 Text("Done").bold()
             })

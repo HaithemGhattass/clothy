@@ -6,6 +6,6 @@
 //
 
 class HostUtils {
-    var HOST_URL = "http:/192.168.1.92:9090/"
-    var HOST_WS = "ws://192.168.1.92:9090"
+    var HOST_URL = "http:/192.168.1.2:9090/"
+    var HOST_WS = "ws://192.168.1.2:9090"
 }

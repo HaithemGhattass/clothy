@@ -15,6 +15,7 @@ struct SignInView: View {
     @Binding var forgetpw : Bool
     @Binding var showSignUp : Bool
     @Binding var showsignin : Bool
+    @StateObject private var Avm = UserAuthModel()
     @StateObject private var Vm = UsersViewModel()
     let confetti = RiveViewModel(fileName: "confetti", stateMachineName: "State Machine 1")
     let check = RiveViewModel(fileName: "check", stateMachineName: "State Machine 1")
@@ -108,19 +109,6 @@ struct SignInView: View {
                     Rectangle().frame(height: 1).opacity(0.1)
                     
                 }
-                Button(action: {
-//                    self.loginVM.facebookLogin { completionData,data  in
-//                            // Do operation with String
-//                           // print(completionData);
-//                        if(completionData){
-//                            print(completionData)
-//                            logIn()
-//                        }
-//
-//                        }
-                }) {
-                    Text("login with facebook")
-                }
                 Button {
                     withAnimation {
                         showsignin.toggle()
@@ -147,20 +135,58 @@ struct SignInView: View {
                     Rectangle().frame(height: 1).opacity(0.1)
                     
                 }
-                Text("Sign up with Email, Apple or Google")
+               
+                HStack {
+                    Rectangle().frame(height: 1).opacity(0.1)
+                    Text("OR").font(.subheadline).foregroundColor(.black.opacity(0.3))
+                    Rectangle().frame(height: 1).opacity(0.1)
+                    
+                }
+                Text("Sign up with Google")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
                 HStack {
                     
-                    Image("Logo Email").onTapGesture {
-                    //    login.toggle()
+                  
+                    Image("Logo Google").onTapGesture {
+                        Avm.signIn( completed: { (reponse)  in
+
+                                                if (reponse) {
+                                                    //logIn()
+                                                    isLoading = true
+                                                    withAnimation{
+                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                                            check.triggerInput("Check")
+                                                        }
+                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                                            isLoading = false
+                                                            confetti.triggerInput("Trigger explosion")
+                                                        }
+                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                                            withAnimation {
+                                                                logged = true
+                                                                UserDefaults.standard.set(true, forKey: "logged")
+                                                                
+                                                            }
+                                                            
+                                                            
+                                                        }
+
+                                                       
+                                                    
+                                                    }
+                                   
+                                                  
+                                                    print("connected")
+                                                } else {
+                                                    print(password)
+                                                    print(email)
+                                                    print("ERROR CANT CONNECT")
+                                                }
+
+                                            })
                     }
-                    Spacer()
-                 
-                    Image("Logo Apple")
-                    Spacer()
-                    Image("Logo Google")
                 }
 
                     

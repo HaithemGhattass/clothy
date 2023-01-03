@@ -76,6 +76,13 @@
 		D59435FE2961FCFF0012EA86 /* shapes.riv in Resources */ = {isa = PBXBuildFile; fileRef = D59435F72961FCFF0012EA86 /* shapes.riv */; };
 		D59435FF2961FCFF0012EA86 /* check.riv in Resources */ = {isa = PBXBuildFile; fileRef = D59435F82961FCFF0012EA86 /* check.riv */; };
 		D59436002961FCFF0012EA86 /* house.riv in Resources */ = {isa = PBXBuildFile; fileRef = D59435F92961FCFF0012EA86 /* house.riv */; };
+		D5943602296308070012EA86 /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5943601296308070012EA86 /* TermsView.swift */; };
+		D594360529630B6A0012EA86 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D594360429630B6A0012EA86 /* GoogleSignIn */; };
+		D594360729630B6A0012EA86 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D594360629630B6A0012EA86 /* GoogleSignInSwift */; };
+		D594360929630B8B0012EA86 /* UserAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D594360829630B8B0012EA86 /* UserAuthModel.swift */; };
+		D594360B29630F350012EA86 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D594360A29630F350012EA86 /* MessageBubble.swift */; };
+		D594360D29630F5B0012EA86 /* TitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D594360C29630F5B0012EA86 /* TitleRow.swift */; };
+		D594361129632B060012EA86 /* MatchedItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D594361029632B060012EA86 /* MatchedItemsView.swift */; };
 		D5F05652291BE4C0000377D4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D5F05651291BE4C0000377D4 /* Alamofire */; };
 		D5F05655291BE8DE000377D4 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D5F05654291BE8DE000377D4 /* SwiftyJSON */; };
 /* End PBXBuildFile section */
@@ -169,6 +176,11 @@
 		D59435F72961FCFF0012EA86 /* shapes.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = shapes.riv; sourceTree = "<group>"; };
 		D59435F82961FCFF0012EA86 /* check.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = check.riv; sourceTree = "<group>"; };
 		D59435F92961FCFF0012EA86 /* house.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.riv; sourceTree = "<group>"; };
+		D5943601296308070012EA86 /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
+		D594360829630B8B0012EA86 /* UserAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthModel.swift; sourceTree = "<group>"; };
+		D594360A29630F350012EA86 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		D594360C29630F5B0012EA86 /* TitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleRow.swift; sourceTree = "<group>"; };
+		D594361029632B060012EA86 /* MatchedItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedItemsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +188,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D594360729630B6A0012EA86 /* GoogleSignInSwift in Frameworks */,
 				D5F05655291BE8DE000377D4 /* SwiftyJSON in Frameworks */,
+				D594360529630B6A0012EA86 /* GoogleSignIn in Frameworks */,
 				D5F05652291BE4C0000377D4 /* Alamofire in Frameworks */,
 				D51883DD2917EE25008799CA /* RiveRuntime in Frameworks */,
 			);
@@ -285,6 +299,7 @@
 				D59435912961F75B0012EA86 /* TicketModel.swift */,
 				D59435932961F76C0012EA86 /* WeatherModel.swift */,
 				D59435952961F77C0012EA86 /* Weather.swift */,
+				D594360829630B8B0012EA86 /* UserAuthModel.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -322,6 +337,7 @@
 				D59435B22961F89E0012EA86 /* Chat */,
 				D59435AE2961F87B0012EA86 /* SuggestionView.swift */,
 				D59435B02961F88E0012EA86 /* HomeView.swift */,
+				D5943601296308070012EA86 /* TermsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +348,9 @@
 				D59435B32961F8AD0012EA86 /* ChatListView.swift */,
 				D59435B52961F8BE0012EA86 /* Search.swift */,
 				D59435B72961F8DB0012EA86 /* RoomDetailsView.swift */,
+				D594360A29630F350012EA86 /* MessageBubble.swift */,
+				D594360C29630F5B0012EA86 /* TitleRow.swift */,
+				D594361029632B060012EA86 /* MatchedItemsView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -448,6 +467,8 @@
 				D51883DC2917EE25008799CA /* RiveRuntime */,
 				D5F05651291BE4C0000377D4 /* Alamofire */,
 				D5F05654291BE8DE000377D4 /* SwiftyJSON */,
+				D594360429630B6A0012EA86 /* GoogleSignIn */,
+				D594360629630B6A0012EA86 /* GoogleSignInSwift */,
 			);
 			productName = clothy;
 			productReference = D58A5B1F291743E00067A00C /* clothy.app */;
@@ -525,6 +546,7 @@
 				D51883DB2917EE25008799CA /* XCRemoteSwiftPackageReference "rive-ios" */,
 				D5F05650291BE4C0000377D4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D5F05653291BE8DE000377D4 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				D594360329630B6A0012EA86 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = D58A5B20291743E00067A00C /* Products */;
 			projectDirPath = "";
@@ -598,7 +620,9 @@
 				D59435CD2961FA4D0012EA86 /* TradeView.swift in Sources */,
 				D59435BF2961F9220012EA86 /* CategorieView.swift in Sources */,
 				D59435792961F6770012EA86 /* UsersViewModel.swift in Sources */,
+				D594360D29630F5B0012EA86 /* TitleRow.swift in Sources */,
 				D59435DB2961FAD30012EA86 /* ChangePasswordView.swift in Sources */,
+				D594360B29630F350012EA86 /* MessageBubble.swift in Sources */,
 				D59435AF2961F87B0012EA86 /* SuggestionView.swift in Sources */,
 				D59435A32961F7FB0012EA86 /* PaymentButtonView.swift in Sources */,
 				D59435EA2961FB740012EA86 /* CustomTextfield.swift in Sources */,
@@ -614,6 +638,7 @@
 				D59435BB2961F8FC0012EA86 /* CategoryViewDetails.swift in Sources */,
 				D594357F2961F6B70012EA86 /* WeatherAPIClient.swift in Sources */,
 				D59435CA2961FA1A0012EA86 /* ClothyCoreML.mlmodel in Sources */,
+				D594361129632B060012EA86 /* MatchedItemsView.swift in Sources */,
 				D59435AC2961F8590012EA86 /* NavigationBar.swift in Sources */,
 				D59435842961F6F40012EA86 /* Tab.swift in Sources */,
 				D59435CF2961FA5A0012EA86 /* Tickets.swift in Sources */,
@@ -625,11 +650,13 @@
 				D594358A2961F7200012EA86 /* Clothes.swift in Sources */,
 				D594359D2961F7C80012EA86 /* ScrollPrefrenceKey.swift in Sources */,
 				D59435992961F79A0012EA86 /* HexagonView.swift in Sources */,
+				D594360929630B8B0012EA86 /* UserAuthModel.swift in Sources */,
 				D59435862961F7040012EA86 /* Model.swift in Sources */,
 				D59435B62961F8BE0012EA86 /* Search.swift in Sources */,
 				D59435C82961F9920012EA86 /* ImgPicker.swift in Sources */,
 				D59435EC2961FB860012EA86 /* Extentions.swift in Sources */,
 				D59435B42961F8AD0012EA86 /* ChatListView.swift in Sources */,
+				D5943602296308070012EA86 /* TermsView.swift in Sources */,
 				D594358E2961F73B0012EA86 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -789,7 +816,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "clothy/Preview\\ Content";
-				DEVELOPMENT_TEAM = G96V29LG5G;
+				DEVELOPMENT_TEAM = YGMX22GP35;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = clothy/Info.plist;
@@ -805,7 +832,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = haithemmtar.clothy;
+				PRODUCT_BUNDLE_IDENTIFIER = hm.clothy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -837,7 +864,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = haithemmtar.clothy;
+				PRODUCT_BUNDLE_IDENTIFIER = hm.clothy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -971,6 +998,14 @@
 				kind = branch;
 			};
 		};
+		D594360329630B6A0012EA86 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		D5F05650291BE4C0000377D4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -994,6 +1029,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D51883DB2917EE25008799CA /* XCRemoteSwiftPackageReference "rive-ios" */;
 			productName = RiveRuntime;
+		};
+		D594360429630B6A0012EA86 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D594360329630B6A0012EA86 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		D594360629630B6A0012EA86 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D594360329630B6A0012EA86 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 		D5F05651291BE4C0000377D4 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

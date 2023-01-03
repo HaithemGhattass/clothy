@@ -254,8 +254,15 @@ class WebSocketManager: ObservableObject {
                     let data = text.data(using: .utf8)!
                     let jsonData = try! JSONSerialization.jsonObject(with: data , options: .fragmentsAllowed)
                 let rooms = self.makeItem(jsonItem: JSON(jsonData))
-                    print(jsonData)
-
+                    
+                 //   print(rooms.match.idOutfit)
+                    let array = rooms.match.idOutfit
+                        print(rooms.match.idOutfit)
+//                    for item in array {
+//                        print(item)
+//                        print("aaasdsd")
+//                    }
+                  
 
                     DispatchQueue.main.async {
                         self.users.append(rooms)

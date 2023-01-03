@@ -65,10 +65,14 @@ struct AccountView: View {
                         }
                     menu
                     links
-                    PaymentButtonView(action: {})
-                        .padding()
+                 //   PaymentButtonView(action: {})
+                  //      .padding()
                     Button(role: .destructive) {
-                        
+                        withAnimation{
+                            logged.toggle()
+                            Vm.deleteMethod()
+                        }
+                      
                     }label: {
                         Text("Delete Account")
                     }
@@ -93,12 +97,16 @@ struct AccountView: View {
                 
                 Label("Contact",systemImage: "mail")
             }
-            NavigationLink{ChangePasswordView()} label: {
-                Label("Password",systemImage: "lock")
+            if(Vm.password != "azerty"){
+                NavigationLink{ChangePasswordView()} label: {
+                    Label("Password",systemImage: "lock")
+                }
             }
-            NavigationLink{MainView()} label: {
-                Label("Help",systemImage: "questionmark")
-            }
+          
+
+                Link("Terms of service and conditions", destination: URL(string: HostUtils().HOST_URL + "term")!)
+
+            
             
                
         }
@@ -113,8 +121,14 @@ struct AccountView: View {
             Button(role: .destructive) {
                 withAnimation{
                   //  show.toggle()
-                    UserDefaults.standard.set(false, forKey: "logged") //Bool
-                    logged.toggle()
+                    withAnimation{
+                        UserDefaults.standard.set(false, forKey: "logged") //Bool
+                        Vm.signout()
+                        logged.toggle()
+                       
+                    }
+                  
+                    
 
                    
                 }

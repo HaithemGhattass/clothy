@@ -63,6 +63,109 @@ final class OutfitViewModel : ObservableObject{
         
         
     }
+    func trade(idroom: String,totrade:String,totradeR:String){
+        AF.request(HostUtils().HOST_URL+"match/trade/"+idroom,
+                   method: .post,
+                   parameters: ["totrade": totrade, "totradeR": totradeR], encoding: JSONEncoding.default)
+        .validate(statusCode: 200..<300)
+        .validate(contentType: ["application/json"])
+        
+        .responseData {response in
+            switch response.result {
+                
+            case .success:
+               print("done")
+
+              
+            case .failure:
+              print("fail")
+            }
+        }
+    }
+    func matchoutfitR(matchid: String){
+        let clothesURL = HostUtils().HOST_URL+"match/matchoutfitR/"+matchid
+        if let url = URL(string:clothesURL) {
+            URLSession
+                .shared
+                .dataTask(with: url) { [weak self] data, response, error in
+                    
+                    
+                    DispatchQueue.main.async {
+                        
+                        defer {
+                            self?.isRefreshing = false
+                        }
+                        
+                        if let error = error {
+                            self?.hasError = true
+                            self?.error = ClothesError.custom(error: error)
+                            print(error)
+                        } else {
+                            
+                            let decoder = JSONDecoder()
+                            decoder.keyDecodingStrategy = .convertFromSnakeCase // Handle properties that look like first_name > firstName
+                            print("fetshing ...")
+                            
+                            if let data = data,
+                               let clothes = try? decoder.decode([Clothes].self, from: data) {
+                                
+                                
+                                self?.clothes = clothes
+                              print(clothes)
+                            } else {
+                                self?.hasError = true
+                                self?.error = ClothesError.failedToDecode
+                                print(error ?? "there's an error")
+                             
+                            }
+                        }
+                    }
+                }.resume()
+        }
+        
+    }
+    func matchoutfit(matchid: String){
+        let clothesURL = HostUtils().HOST_URL+"match/matchoutfit/"+matchid
+        if let url = URL(string:clothesURL) {
+            URLSession
+                .shared
+                .dataTask(with: url) { [weak self] data, response, error in
+                    
+                    
+                    DispatchQueue.main.async {
+                        
+                        defer {
+                            self?.isRefreshing = false
+                        }
+                        
+                        if let error = error {
+                            self?.hasError = true
+                            self?.error = ClothesError.custom(error: error)
+                            print(error)
+                        } else {
+                            
+                            let decoder = JSONDecoder()
+                            decoder.keyDecodingStrategy = .convertFromSnakeCase // Handle properties that look like first_name > firstName
+                            print("fetshing ...")
+                            
+                            if let data = data,
+                               let clothes = try? decoder.decode([Clothes].self, from: data) {
+                                
+                                
+                                self?.clothes = clothes
+                              print(clothes)
+                            } else {
+                                self?.hasError = true
+                                self?.error = ClothesError.failedToDecode
+                                print(error ?? "there's an error")
+                             
+                            }
+                        }
+                    }
+                }.resume()
+        }
+        
+    }
     
     func getClothes(categorie: String){
         let clothesURL = HostUtils().HOST_URL+"outfit/OFT/"+categorie

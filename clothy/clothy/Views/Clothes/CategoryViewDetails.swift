@@ -88,14 +88,14 @@ var body : some View {
         
         HStack {
             Circle()
-                .fill(Color.blue)
+                .fill(Color(hex:clothes.couleur))
             .frame(width: 20, height: 20)
-            Text(" | ")
+            Text(" | Size: ")
             Text(clothes.taille)
         }
        // Spacer()
 
-        Text(clothes.category)
+        Text("Type: " + clothes.category)
             .font(.title)
             .fontWeight(.bold)
             .foregroundColor(.white)
@@ -144,7 +144,7 @@ var body : some View {
     VStack(alignment: .leading) {
 
        
-       AsyncImage(url: URL(string: HostUtils().HOST_URL + "upload/" + photo )){ image in
+       AsyncImage(url: URL(string: HostUtils().HOST_URL + "uploads/" + photo )){ image in
            image
                .resizable()
                .renderingMode(.original)

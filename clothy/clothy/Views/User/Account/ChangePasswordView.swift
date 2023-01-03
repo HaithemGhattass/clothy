@@ -11,6 +11,7 @@ struct ChangePasswordView: View {
     @State var mypass : String = ""
     @State var newpass : String = ""
     @State var confirmpass : String = ""
+    @State var alerttext : String = ""
     @State private var showingAlert = false
     @State private var presentAlert = false
 
@@ -51,14 +52,22 @@ struct ChangePasswordView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing){
                 Button("Done"){
-                    vm.changepassword(password: mypass, newpass: newpass, completed: {  (succ) in if (succ){
-                        self.presentationMode.wrappedValue.dismiss()
-                    }else {
+                    if (!UsersViewModel().isValidPassword(password: newpass)){
                         presentAlert = true
-                    }})
+                        alerttext = "Password Must have minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number"
+                    } else {
+                        vm.changepassword(password: mypass, newpass: newpass, completed: {  (succ) in if (succ){
+                            self.presentationMode.wrappedValue.dismiss()
+                        }else {
+                            alerttext = "Oops ,please verify your passwod"
+                            presentAlert = true
+                        }})
+                    }
+                    
+                  
                     //action(vm.edit)
                 }.disabled($newpass.wrappedValue == $confirmpass.wrappedValue ? false : true)
-                    .alert("Oops ,please verify your passwod", isPresented: $presentAlert) {
+                    .alert(alerttext, isPresented: $presentAlert) {
                         Button("OK", role: .cancel) { }
                     }
             }

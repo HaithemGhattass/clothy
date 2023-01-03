@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import CoreLocation
-import CoreLocationUI
 
 struct ChatListView: View {
     @State var showchats = false
@@ -15,9 +13,14 @@ struct ChatListView: View {
     @State var searchText: String = ""
     @ObservedObject var wsManager = WebSocketManager()
     @State var idroom = ""
-   // @StateObject var locationManager = LocationManager()
-
+    
     @State var iduser = ""
+    @State var firstname = ""
+    @State var lastaname = ""
+    @State var profilepic = ""
+
+    
+    
     init() {
         wsManager.setuproom()
         
@@ -57,19 +60,7 @@ struct ChatListView: View {
                             //OnlineUsersView(users: users)
                             ScrollView(.horizontal, showsIndicators: false){
                                 VStack{
-                                   /* VStack {
-                                               if let location = locationManager.location {
-                                                   Text("Your location: \(location.latitude), \(location.longitude)")
-                                               }
-
-                                               LocationButton {
-                                                   locationManager.requestLocation()
-                                               }
-                                               .frame(height: 44)
-                                               .padding()
-                                           } */
                                     HStack(spacing:25){
-                                        
                                         ForEach(self.wsManager.users,id: \.user.id) { user in
                                             VStack{
                                                 AsyncImage(url: URL(string: HostUtils().HOST_URL + "uploads/" +  user.user.imageF)) { phase in
@@ -110,6 +101,10 @@ struct ChatListView: View {
                                                     
                                                     idroom = user.match.id
                                                     iduser = user.user.id
+                                                    firstname = user.user.firstname
+                                                    lastaname = user.user.lastname
+                                                    profilepic = user.user.imageF
+                                                    print(firstname+"aaaaaaaaa")
                                                
                                                  
                                                     showchats.toggle()
@@ -192,6 +187,10 @@ struct ChatListView: View {
                                         
                                         idroom = room.match.id
                                         iduser = room.user.id
+                                        firstname = room.user.firstname
+                                        lastaname = room.user.lastname
+                                        profilepic = room.user.imageF
+                                        print(firstname+"aaaaaaaaa")
                                       //  wsManager.sendRoom(id: idroom)
                                      
                                         showchats.toggle()
@@ -210,7 +209,7 @@ struct ChatListView: View {
         }
         if showchats {
             let socket2 : URLSessionWebSocketTask = URLSession(configuration: .default).webSocketTask(with: URL(string: HostUtils().HOST_WS+"/room/"+idroom)!)
-            RoomDetailsView(idroom: idroom, iduser: iduser, socket2:socket2)
+            RoomDetailsView( idroom: idroom, iduser:iduser,firstname:firstname,lastname:lastaname,profilepic: profilepic, socket2: socket2)
 //            Text("sending")
 //
 //            VStack{
