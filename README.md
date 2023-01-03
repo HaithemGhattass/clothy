@@ -5,7 +5,7 @@ Clothy is an iOS application that helps you put together the perfect outfit. Sim
 
 ## Features
 - Detetcts outfit type
-- Suggests outfits based on your inputted clothing items
+- Suggests outfits based on weather
 - Allows you to save and label your clothes
 - Gives you the option to trade your clothes with other persons
 
